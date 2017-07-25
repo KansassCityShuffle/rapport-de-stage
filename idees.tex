@@ -1,0 +1,50 @@
+Objectifs du stage : 
+1 - Présentation du contexte (SII , historique, secteur d'activité - mettre l'accent sur BU ASD - CA ASD - secteur porteur pour la société) 
+2 - Définition des objectifs du stage, des moyens mis à disposition
+
+Fonctionnalités : 
+
+1 - SLAM 
+2 - Vue première personne
+3 - Rejeu de sauvegardes : définition d'un modèle de document XML, encodage des données les plus lourdes (trajectoire et carte)
+4 - Lissage du rendu des obstacles : 	définition d'une structure de données permettant d'agglomérer les points détectés par le laser, 
+					politique d'agglomération, définition de la structure de rendu
+5 - Intégration joystic virtuel
+6 - Contrôle du robot : envoi des commandes de contrôles et remontées des informations odométriques		
+7 - Visualisation sur l'interface graphique
+8 - Gestion des paramètres de l'application : accent sur la volonté de produire un logiciel modulaire 
+9 - Mise en place d'un système de journalisation flexible à sorties multiples 
+10 - Visionnage des données du LIDAR 
+11 - Transmission WiFi, un choix fonctionnel au détriment de la sécurité (script d'exécution en shell non interactif) 
+
+Architecture et choix techniques :
+
+1 - Périphériques matériels : robot, LIDAR et Raspberry PI 3 modèle B, schéma de mise en oeuvre liaision Wifi et poste
+de travail utilisateur 
+1 - Architecture de l'IHM : utilisation de Qt, signaux et slots 
+2 - ROS : architecture (rqt-graph), topics, frames, focus sur les noeuds personnellement implémentés  
+
+Bilan sur la qualité du logiciel : 
+
+1 - La gestion des ressources
+  1 - Analyse mémoire du programme de l'IHM  
+  1.1 - Application de l'outil d'analyse mémoire ``Memcheck'' depuis l'interface graphique de Qt Creator. 
+  Description de l'outil 
+  Configuration 
+  Exécutions interne et externe à l'IHM 
+  Contextes d'analyse : En dernier lieu, nous devons élaborer des scénarios pertinents et suffisamment exhaustifs voués à couvrir une majeure partie des contextes 
+  d'exécution qui pourraient être amenés par un utilisateur. Ces sénarios, qui sont présentés en Annexe X, ont tous été passés au crible de l'outil d'analyse.   
+
+  1.2 - Interprétation des problèmes détectées
+
+  2 - Application de correctifs 
+  2.1 - Smarts Pointers  
+  2.2 - Fonctions de dé-allocation appropriées ( free() / delete / delete[] )   
+
+  3 - Résultats 
+  3.1 - Utilisation de la mémoire 
+  3.2 - Utilisation CPU
+  3.3 - Erreurs externes 
+  De nombreuses erreurs externes sont recensées suite à l'analyse mémoire effectuée.
+  Celles-ci sont dues aux librairies utilisées par l'application et peuvent être classées en diverses catégories en fonction de l'emplacement de ces dernières. 
+  On peut principalement citer les erreurs ayant pour source les librairies de calcul propres à NVidia (libGLX_nvidia.so.X), celles propres à QT ( ) ou encore celles .  

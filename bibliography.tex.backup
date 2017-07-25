@@ -1,0 +1,102 @@
+\begin{thebibliography}{9}
+
+  \bibitem{Bib_exercice_2015_2016}
+  SII Siège Social - Paris,
+  \emph{Document de référence incluant rapport annuel financier. Exercice 2015/2016},
+  172 p.
+  
+  \bibitem{Bib_memento_ag_idf}
+  SII Ile de France - Paris,
+  \emph{Memeto Agence Ile-de-France. Missions, Organisation, Processus},
+  Version 11,
+  102 p, 
+  Mai 2017.
+  
+  \bibitem{Bib_SA_wiki}
+  Wikipédia,
+  \emph{Société Anonyme},
+  \url{https://fr.wikipedia.org/wiki/Société_anonyme}
+  21 juin 2017.
+  
+  \bibitem{Bib_def_cher}
+  Frank Canton relayé par le Ministère de l'intérieur,
+  \emph{Armement et défense, traditions du Cher},
+  \url{https://www.interieur.gouv.fr/Archives/Archives-des-dossiers/2016-Dossiers/Le-Cher/Armement-et-defense-traditions-du-Cher}
+  janvier 2016.
+  
+  \bibitem{Bib_dummies}
+  Cognitive Robotics, Massachusetts Institute of Technology, 
+  Søren Riisgaard and Morten Rufus Blas
+  \emph{SLAM for Dummies A Tutorial Approach to Simultaneous Localization and Mapping}, 
+  \url{https://ocw.mit.edu/courses/aeronautics-and-astronautics/16-412j-cognitive-robotics-spring-2005/projects/1aslam_blas_repo.pdf}
+  Spring 2005
+  
+  \bibitem{Bib_openslam}
+  Cyrill Stachniss, Udo Frese, Giorgio Grisetti,
+  \emph{Give your algorithm to the community}, 
+  \url{https://www.openslam.org}
+  Spring 2005
+ 
+  \bibitem{Bib_ROS_master}
+  ROS Documentation,
+  \emph{Master}
+  \url{http://wiki.ros.org/Master}
+  
+  \bibitem{Bib_ROS_nodes}
+  ROS Documentation,
+  \emph{Nodes}
+  \url{http://wiki.ros.org/Nodes}
+  
+  \bibitem{Bib_ROS_topics}
+  ROS Documentation,
+  \emph{Topics}
+  \url{http://wiki.ros.org/Topics}
+  
+  \bibitem{Bib_ROS_services}
+  ROS Documentation,
+  \emph{Services}
+  \url{http://wiki.ros.org/Services}
+  
+  \bibitem{Bib_ROS_package}
+  ROS Documentation,
+  \emph{catkin/package.xml}
+  \url{http://wiki.ros.org/catkin/package.xml}
+ 
+  \bibitem{Bib_ROS_manifeste}
+  ROS Documentation,
+  \emph{catkin/CMakeLists.txt}
+  \url{http://wiki.ros.org/catkin/CMakeLists.txt}
+  
+  \bibitem{Bib_Hector_SLAM}
+  S. Kohlbrecher and J. Meyer and O. von Stryk and U. Klingauf,
+  \emph{A Flexible and Scalable SLAM System with Full 3D Motion Estimation}
+  \url{http://www.sim.informatik.tu-darmstadt.de/publ/download/2011_SSRR_KohlbrecherMeyerStrykKlingauf_Flexible_SLAM_System.pdf}
+  2011
+  
+  \bibitem{Bib_Hector_2016}
+  Stefan Kohlbrecher, Christian Rose, Dorothea Koert, Paul Manns, Florian Kunz, Benedikt Wartusch, Kevin Daun, Alexander Stumpf and Oskar von Stryk,
+  \emph{RoboCup Rescue 2016 Team Description Paper Hector Darmstadt}
+  \url{http://www.robocup2016.org/media/symposium/Team-Description-Papers/RescueRobot/RoboCup_2016_RescueR_TDP_HectorDarmstadt.pdf}
+  2016
+  
+  \bibitem{Bib_Team_Hector}
+  Site officiel de l'équipe de développement et de maintien d'Hector SLAM,
+  \url{http://www.teamhector.de/}
+  
+  \bibitem{Bib_Hector_git}
+  Stefan Kohlbrecher,
+  \emph{Hector SLAM Git repository}
+  \url{https://github.com/tu-darmstadt-ros-pkg/hector_slam}
+  29 mars 2011
+
+  \bibitem{Bib_ROS_install}
+  ROS Documentation,
+  \emph{Debian install of ROS Kinetic}
+  \url{http://wiki.ros.org/kinetic/Installation/Debian}
+  
+  \bibitem{Bib_ROS_tf}
+  ROS Documentation,
+  \emph{tf}
+  \url{http://wiki.ros.org/tf}
+
+\end{thebibliography}

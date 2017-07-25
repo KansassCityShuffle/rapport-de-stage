@@ -1,0 +1,17 @@
+\begin{abstract}
+ \hskip7mm
+ 
+ \begin{spacing}{1.3}
+  
+  Pour répondre aux besoins qui motivent leur réalisation, les systèmes robotiques mobiles doivent s'appuyer sur une connaissance plus ou moins fiable de leur environnement. 
+  On distingue la perception de l'environnement externe du robot de la perception que le robot a de lui-même --en tant que plateforme mobile-- au sein de cet environnement.
+  Ces deux versants, qui tiennent une place prépondérante dans le domaine des véhicules autonomes ou intelligents, 
+  sont connus sous le nom de SLAM (Simultaneous Localisation And Mapping / Localisation et Cartographie Simultannées). 
+  Ce rapport aborde ces questions au travers de la spécification, de la conception et de l'implémentation de briques logicielles destinées à contrôler un robot mobile 
+  et rendre état de son environnement externe tout comme de sa localisation en temps réel.   
+  Le projet décrit dans ce document recouvre le système complet, allant des périphériques physiques d'acquisition de données jusqu'à la présentation des résultats au travers d'une 
+  IHM interactive. 
+  
+ \end{spacing}
+
+\end{abstract}

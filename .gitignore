@@ -1,0 +1,11 @@
+*.toc
+*.log
+*.out
+*.glg
+*.glo
+*.gls
+*.ist
+*.aux
+*.swp
+*.xdy
+*.lof

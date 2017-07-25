@@ -1,0 +1,153 @@
+\documentclass[a4paper, 11pt]{report} 
+
+%language and encoding
+\usepackage[obeyspaces, spaces]{url}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage{parskip}
+\usepackage{hyperref}
+\usepackage{eurosym}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{pdfpages}
+\usepackage{caption}
+\usepackage{microtype}
+\usepackage{dirtree}
+%police et mise en page (marges) du document	
+\usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
+\usepackage{setspace}
+\usepackage[nonumberlist]{glossaries}
+% C++ style 
+\usepackage{listings}
+\usepackage{xcolor}
+% algorithm
+\usepackage[ruled,vlined,french]{algorithm2e}
+% colors definition
+\definecolor{blue-sii}{RGB}{0,90,163}
+\definecolor{purple-sii}{RGB}{141,51,138}
+\definecolor{string-color}{RGB}{85, 98, 112}
+\definecolor{fun-color}{RGB}{196, 77, 88}
+\definecolor{key-color}{RGB}{11, 72, 107}
+\definecolor{ponct-color}{RGB}{235,104,65}
+\definecolor{comment-color}{RGB}{243, 58, 37}
+% coding style
+\lstdefinestyle{customcpp}
+{
+  tabsize=4,
+  frame=single,
+  numbers=left,
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  xleftmargin=\parindent,
+  language=C++,
+  showstringspaces=false,
+  basicstyle={\ttfamily\footnotesize},
+  commentstyle=\color{comment-color},
+  %identifierstyle=\color{blue-sii},
+  stringstyle=\color{string-color},
+  directivestyle=\color{blue},
+  keywordstyle = {\color{key-color}},
+  keywordstyle = [2]{\color{ponct-color}},
+  keywordstyle = [3]{\color{teal}},
+  keywordstyle = [4]{\color{string-color}},
+  otherkeywords = {;,<<,>>,++,Serializer,nav_msgs,std,cout,endl,serializeMap,append,length,to_string, ||, +, !, =, *,Correlator,feedResult,uint64_t,pair,QObject,WifibotClient,MainWindow,emit,SensorData},
+  morekeywords = [1]{emit},
+  morekeywords = [2]{;, <<, >>, ++, ||, +, !, =, *},
+  morekeywords = [3]{Serializer, nav_msgs, std, serializeMap, cout, endl,to_string,Correlator,feedResult,uint64_t,pair,QObject,WifibotClient,MainWindow,SensorData},
+  morekeywords = [4]{append, length},
+}
+\lstdefinestyle{custombash}
+{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  xleftmargin=\parindent,
+  language=bash,
+  showstringspaces=false,
+  basicstyle={\ttfamily\footnotesize},
+  commentstyle=\color{blue-sii!40!black},
+  %identifierstyle=\color{blue-sii},
+  stringstyle=\color{string-color},
+  directivestyle=\color{blue},
+  keywordstyle = {\color{key-color}},
+  keywordstyle = [2]{\color{key-color}},
+  otherkeywords = {roslaunch},
+  morekeywords = [2]{roslaunch},
+}
+\lstdefinestyle{customasm}{
+  belowcaptionskip=1\baselineskip,
+  frame=L,
+  xleftmargin=\parindent,
+  language=[x86masm]Assembler,
+  basicstyle= \ttfamily,
+  commentstyle=\itshape\color{purple!40!black},
+}
+\lstset{escapechar=@,style=customcpp}
+
+\input{glossary}
+
+\begin{document}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %                    Blank                          %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \thispagestyle{empty}
+  \newpage
+  ~ 
+  \newpage
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %                    Abstract                       %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  \thispagestyle{empty}
+  \newpage
+  \input{abstract}
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %                  ThanksGiving	              %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  \thispagestyle{empty}
+  \input{remerciements}
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % 	           Table of Contents                  %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  \thispagestyle{empty}
+  \tableofcontents
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %                  Figures & Tabs		      %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  \thispagestyle{empty}
+  \listoffigures
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % 	                Chapters                      %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  \thispagestyle{empty}
+  \setcounter{page}{0}
+  \input{introduction}
+  \input{contexte}
+  \input{realisations}
+  \input{bilan}
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % 	                Glossary                      %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  \setglossarystyle{altlist}
+  \printglossaries
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % 	               Bibliography                   %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  \input{bibliography}
+
+\end{document}

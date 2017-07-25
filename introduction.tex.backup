@@ -1,0 +1,22 @@
+\chapter*{Introduction}
+Issu d’un partenariat entre \gls{SII} et l’INSA Centre Val-de-Loire, ce stage vise à la réalisation d’une application logicielle au sein de la société SII, sur le site de Bourges. 
+Il s’inscrit dans le domaine du développement informatique appliqué à la robotique. 
+Les briques logicielles implémentées devront permettre de cartographier l’environnement d’un robot mobile, ainsi que de le localiser en quasi-temps réel. 
+Ces deux versants s’appuient prioritairement sur des mesures spatiales, forunies par un \gls{LIDAR} embarqué sur le robot. 
+
+Ce stage s'inscrit dans un périmètre plus large qu’est la mise en \oe{}uvre d’un Système Robotique Tactique Multi-Missions pour la surveillance et l’aide à la prise de décisions dans les milieux à risques (\gls{SRT2M}), 
+adressé au secteur de la Défense. 
+Il permet à un opérateur d’effectuer des missions de contrôle, de surveillance et de recherche en terrain dangereux ou potentiellement dangereux directement depuis un ``shelter'', à savoir une zone abritée. 
+L’opérateur dispose d’une flotte de robots terrestres et aériens qu’il peut téléguider à distance. 
+\`{A} mesure que l’exploration progresse, l’opérateur visualise d’une part les données cartographiques et la localisation des véhicules au sein de cette carte, et d’autre part, 
+des flux vidéo émanant de caméras à 360\degre également embarquées. 
+Ces flux vidéo sont soumis à des traitements qui permettent de détecter des objets d’intérêts et de les classifier de manière automatique. 
+C'est Alban Chazot, étudiant ingénieur à l'INSA Centre Val-de-Loire qui a assuré, pendant son stage, la réalisation de cette fonctionnalité.   
+Les classifications sont ensuite incrustées sur la carte générée, de manière à ce que l'utilisateur puisse visionner la classe, la position et la taille des entités détectées en une seule et même zone de rendu. 
+
+%En définitive, nous disposons d’un système capable de naviguer en autonomie et de qualifier précisément les « objets » qu’il rencontre, typiquement : une personne, un véhicule, un bâtiment, une arme…
+Le système ainsi mis en place ouvre le champ à divers scénarios d’utilisation. 
+Ceux-ci trouvent leur pertinence dès lors que le recours à des opérateurs humains sur le terrain concerné présente un risque ou de fortes contraintes. 
+Un scénario possible est l’exploration d’environnements accidentés (incendies, incidents nucléaires), la localisation de victimes (USART) et l’estimation des dégâts sont réalisables de manière sécurisée. 
+
+Annonce du plan. 
