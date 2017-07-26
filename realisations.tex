@@ -520,7 +520,7 @@ D'un point de vue formel, le fonctionnement de l'application est régi par une m
 
 \begin{figure}[h]
   \centering
-    \includegraphics[width=.6\linewidth]{figures/state_machine}  
+    \includegraphics[width=.7\linewidth]{figures/state_machine}  
   \captionof{figure}{Machine à état de l'application Qt}
   \label{fig:stateMachine}
 \end{figure}
@@ -537,8 +537,7 @@ La figure \ref{fig:modelIHM} expose quant à elle les classes et packages dével
 Sont également représentés les moyens de communications mis en place entre l'IHM et les autres éléments constituant le projet : le réseau \gls{ROS} et la couche d'exploitation du Wifibot. 
 
 \begin{figure}[h]
-  \centering
-    \includegraphics[width=1.\linewidth]{figures/ihm-model}  
+  \makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{figures/ihm-model}}%
   \captionof{figure}{Modèlisation logicielle de l'Interface Homme-Machine}
   \label{fig:modelIHM}
 \end{figure}
@@ -596,11 +595,7 @@ QString SlamWidget::floatToHex(float v)
 Un algorithme similaire a été appliqué pour l'ensemble des orientations du robot. 
 Ces techniques ont permis de réduire significativement les données à sauvegardées à l'aide d'une compression sans perte dans un  premier cas et une perte de l'ordre du centième de case (soit 0.0005m) dans un second cas.  
   
-  Gestion des logs
-  
-  Lissage des murs
-  
-  \subsection{Eléments de modularité mis en place}
+  \subsection{\'{E}léments de modularité mis en place}
   
 La réalisation de l'application a d'emblée été associée à un objectif de modularité afin d'appréhender au mieux la perspective de stages futurs et / ou d'une possible adaptation industrielle du projet. 
 L'utilisation de ROS allant dans ce sens, il paraissait intéressant d'appliquer cet état d'esprit à l'\gls{IHM}, tant dans l'architecture du logiciel que dans les fonctionnalités proposées à l'utilisateur final. 
@@ -617,3 +612,54 @@ Nous exposons ici les principes qui sous-tendent cette démarche, nous amenant �
 
 Qt offre un système de paramétrage des applications par le biais de fichiers texte et d'une classe \path{QSettings} indépendante de la plateforme utilisée
 \footnote{En l'occurence, sur un système Unix, de tels fichiers seront stockés au format \path{.ini} sous \path{~/.config/<filename>.ini}}.
+Cette dernière permet l'écriture de paramètres selon le paradigme clé / valeur et hiérarchisés sous forme de groupe.  
+Dans notre IHM, une classe statique \path{SettingsManager} est utilisée pour écrire de tels paramètres, soit à l'initialisation de l'application soit lors de la configuration de celle-ci par l'utilisateur. 
+Nous avons défini les groupes suivants relativement au réseau ROS :
+
+\renewcommand*\DTstylecomment{\rmfamily\color{red}}
+\dirtree{%
+.1 ros\DTcomment{groupe de paramétrage du réseau ROS}. 
+.2 $<$ID$>$\DTcomment{identifiant du groupe de paramètres}. 
+.3 package. 
+.4 $<$nom du package$>$\DTcomment{nom du package à invoquer}. 
+.3 lauchfile. 
+.4 $<$launchfile$>.$launch\DTcomment{nom du launchfile à invoquer}. 
+.3 islocalnode. 
+.4 $<$bool$>$\DTcomment{indique si le noeud est local ou embarqué}. 
+.3 label. 
+.4 $<$GUI label$>$\DTcomment{label à afficher sur l'interface}. 
+.3 nodes. 
+.4 node. 
+.5 $<$liste de noeuds$>$\DTcomment{liste de noeuds à stopper}. }
+
+L'utilisateur peut mettre à jour ou supprimer les valeurs par défaut et créer de nouvelles entrées directement depuis l'application sous \path{Edit > Settings > ROS} (voir figure \ref{fig:settings}).
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=.7\linewidth]{figures/settings}  
+  \captionof{figure}{Boîte de dialogue de configuration du réseau ROS depuis l'IHM}
+  \label{fig:settings}
+\end{figure}
+
+Ces paramètres sont ensuite parsés, permettant la présentation et l'utilisation de chaque module ROS de manière uniforme.
+D'un point de vue graphique, la classe \path{GuiControl} est responsable de la création dynamique des éléments de l'interface représentant les modules ROS, à partir de la clé de configuration \path{ros/<ID>/label/<GUI label>} 
+tels que représentés figure \ref{fig:guicontrols}.
+
+\begin{figure}
+  \centering
+    \includegraphics[width=.3\linewidth]{figures/guicontrols}  
+  \captionof{figure}{Contrôle du réseau ROS créé dynamiquement sur l'interface graphique}
+  \label{fig:guicontrols}
+\end{figure}
+
+Parallèlement, chaque nouvel identifiant sous \path{ros/<ID>} entraine l'instanciation de la classe \path{NodesLauncher} ou \path{NodesLauncherOverSSH} --en fonction du caractère local ou non du package-- et de la classe 
+\path{NodesKiller}. 
+Ces objets exécutent d'un shell Linux (\path{/bin/bash}) au sein d'un membre Qt de type \path{QProcess} permettant l'éxecution du launchfile afférent lorsque l'utilisateur presse le bouton ``Start'' du module.
+Ils sont aussi responsables de la redirection des sorties du processus vers les sorties dédiés à la journalisation des évènements de l'application\footnote{La classe \path{LogsHandler} est utilisée pour journaliser les messages d'une part dans des fichiers datés du répertoire d'exécution 
+de l'application et d'autre part, dans la console du panneau de contrôle}. 
+La classe \path{NodesKiller} va quant à elle émettre des commandes système vers le ROS Master afin de tuer les n\oe{}uds d'un package lorsque l'utilisateur souhaitera mettre fin à leur exécution. 
+
+Pour résumer, un utilisateur voulant ajouter un nouveau package ROS à l'application devra le compiler de manière classique dans son workspace catkin, éditer un launchfile permettant d'éxecuter le ou les n\oe{}uds afférents puis
+simplement renseigner les informations requises depuis l'IHM. 
+Sous la section \path{Edit > Settings > Network} l'utilisateur pourra également configurer les noms d'hôtes et adresses IP distants, adaptant ainsi le système à d'autres modèles ou instances de robots. 
+Si l'opérateur venait à utiliser une plateforme dotée de capteurs communiquant leurs résultats à un package ROS dédié, le contrôle de ces nouveaux éxecutables pourrait être couvert par l'application en quelques manipulations seulement.  
