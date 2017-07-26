@@ -1,4 +1,4 @@
-\chapter{Définition et mise en \oe{}uvre d'un système de SLAM en temps-réel}
+\chapter{Définition et mise en oeuvre d'un système de SLAM en temps-réel}
 
 \section{De l'expression du besoin à une spécification complète}
 
@@ -223,7 +223,7 @@ Les deux éléments précédents sont indispensables à la création de paquets 
 Parallèlement, on relève la présence d'un fichier portant l'extension \path{.launch}, appelé launchfile.  
 Ce fichier optionnel permet d'exécuter, via un utilitaire en ligne de commandes, plusieurs n\oe{}uds en une seule fois. 
 Pour parser et exécuter le launchfile présent dans notre exemple on saisira simplement :
-\\
+
 \begin{lstlisting}[style=custombash]
 > roslaunch package_1 default.launch
 \end{lstlisting}
@@ -473,7 +473,7 @@ nous devons transformer la distance et l'angle associés dans le système de coo
 	}
       }
     }
-  }
+}
 }
 \end{algorithm}
 
@@ -565,7 +565,7 @@ Nous pouvons visualiser la fenêtre principale (\path{MainWindow}) complétée d
 \begin{itemize}
  \item \textbf{un widget de rendu OpenGL}, en bleu, fourni une représentation de la carte, du robot par le biais d'un modèle 3D et de sa trajectoire (position et orientation en tout temps)
  \item \textbf{un panneau de contrôle}, en vert, est découpé en quatre sections : le Wifibot, le réseau ROS, un joystic virtuel et une console de logs 
- \item \textbf{une barre de menu}, en jaune, permet la sauvagarde de jeux d'acquisition, le chargement d'une sauvagarde pour la rejouer, l'édition de paramètres de l'application ou l'affichage du manuel utilisateur
+ \item \textbf{une barre de menu}, en jaune, permet la sauvegarde de jeux d'acquisition, le chargement d'une sauvegarde pour la rejouer, l'édition de paramètres de l'application ou l'affichage du manuel utilisateur
 \end{itemize}
 
 La figure \ref{fig:replay} expose le rendu global en mode \emph{Backup}. 
@@ -580,7 +580,7 @@ Celui-ci se distingue particulièrement du mode d'acquisition par la présence -
 
 \`{A} cet effet, un format d'enregistrement des données propre à l'application à été défini en \gls{XML}.
 Ce format, appelé \emph{DOG}\footnote{Pour Detection and Occupancy Grid} est géré par les classes du package \path{DogFiles} : \path{DogFilesWriter} pour l'écriture et \path{DogFilesParser} pour la lecture. 
-Des techniques de compressions ont été mises en \oe{}uvre pour les données de taille critique devnat être sauvegardées. 
+Des techniques de compressions ont été mises en \oe{}uvre pour les données de taille critique devant être sauvegardées. 
 Ainsi, les données décrivant la carte sont traitées par un algorithme d'encodage par répétition (Run Lenght Encoding) tandis que toutes les composantes des vecteurs de trajectoire du robot sont gérées par la méthode suivante :
 
 \begin{lstlisting}[style=customcpp]
@@ -602,8 +602,18 @@ Ces techniques ont permis de réduire significativement les données à sauvegar
   
   \subsection{Eléments de modularité mis en place}
   
-  La réalisation de l'application a d'emblée été associée à un objectif de modularité afin d'appréhender au mieux la perspective de stages futurs tout comme d'une possible adaptation industrielle. 
-  L'utilisation de ROS allant dans ce sens, il paraissait intéressant d'appliquer cet état d'esprit à l'\gls{IHM}, tant dans l'architecture du logiciel que dans les fonctionnalités proposées à l'utilisateur final. 
-  
-  Le premier point se retrouve principalement dans l'implémentation de l'\path{Apploader} qui gère le cycle de vie des instances d'une manière communément compréhensible : création, mise-à-jour, destruction.  
-  D'autre part, l'interface graphique et les éléments de communication avec les n\oe{}uds peuvent eux-même être mise à joru par le biais de l'\gls{IHM}. 
+La réalisation de l'application a d'emblée été associée à un objectif de modularité afin d'appréhender au mieux la perspective de stages futurs et / ou d'une possible adaptation industrielle du projet. 
+L'utilisation de ROS allant dans ce sens, il paraissait intéressant d'appliquer cet état d'esprit à l'\gls{IHM}, tant dans l'architecture du logiciel que dans les fonctionnalités proposées à l'utilisateur final. 
+
+Le premier point se retrouve principalement dans l'implémentation de l'\path{Apploader} qui gère le cycle de vie des instances d'une manière communément compréhensible : création, mise-à-jour puis destruction.  
+D'autre part, l'interface graphique et les éléments de communication avec les n\oe{}uds peuvent eux-même être modifiés à convenance par le biais de l'\gls{IHM}. 
+Nous exposons ici les principes qui sous-tendent cette démarche, nous amenant à balayer les points suivants : 
+
+\begin{itemize}
+  \item le paramétrage modulaire du réseau ROS
+  \item les éléments graphiques attestant l'état de chaque n\oe{}ud
+  \item le contrôle du réseau ROS depuis l'IHM
+\end{itemize}
+
+Qt offre un système de paramétrage des applications par le biais de fichiers texte et d'une classe \path{QSettings} indépendante de la plateforme utilisée
+\footnote{En l'occurence, sur un système Unix, de tels fichiers seront stockés au format \path{.ini} sous \path{~/.config/<filename>.ini}}.
