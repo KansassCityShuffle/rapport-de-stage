@@ -6,15 +6,16 @@
   \subsection{Application du référentiel qualité interne}
   
   Nous exposons ici les éléments fourni par SII ayant guidé de manière significative la conduite du projet. 
-  Ceux-ci seront plus ou moins détaillés notamment au temps ayant été consacré à leur mise en place.
+  Ceux-ci seront plus ou moins détaillés en fonction du temps consacré à leur mise en place.
   
   Les premiers éléments oraganisationnels qui ont été formalisés s'incarnent par deux documents de spécification appelés \gls{STBL} et \gls{DCL}.
   Le premier vise, comme son nom l'indique, à exprimer le plus objectivement possible le besoin qui justifie la réalisation logicielle, notamment au moyen d'exigences représentées figure \ref{fig:exigences}. 
   Cette énumération haut-niveau permet d'appréhender simplement et rapidement le périmètre du logiciel ciblé. 
   Cependant, la réalisation de ce document en bonne et dûe forme nécessite une liste exaustive d'exigences fonctionnelles vues comme des ensembles de fonctions qu'il convient de décrire en terme de rôle, d'entrées, de sorties et
   de traitements. 
-  Dans cadre de ce stage, nous définissons des fonctions comprises dans des modules distincts et étant reliées de la manière suivante : \textbf{relation entre fonctions + légende incorporée dans le schéma}
+  Dans cadre de ce stage, nous définissons des fonctions comprises dans des modules distincts et étant reliées de la manière suivante : 
   
+  \textbf{Ici il manque le schéma de relation entre fonctions que j'avais fait pour le STBL}
   
   Puis, pour chacune des fonctions, on va définir des sous-fonctions, idéalement jusqu'à un niveau de granularité maximal où tous les types de données sont énumérés. 
   Par exemple, on établit que la fonction \emph{Transmettre} du module \textbf{\textcolor{red-stbl}{Map\_bridge}} regroupe les quatre sous-fonctions \emph{Recevoir un message}, \emph{Formater un message} et \emph{\'{E}mettre un message}. 
@@ -87,8 +88,8 @@
   Au référentiel interne de qualité du logiciel se sont ajoutées à la gestion de ce projet certaines bonnes pratiques issues de la formation en Architecure et Sécurité du Logiciel prodiguée à l'INSA Centre Val-de-Loire
   qui ont pu être exploitées dès lors qu'Alban Chazot et moi-même avons été amenés à travailler de concert.
   Cette phase est intervenue dès que nos fonctionnalités respectives, décrites dans le cadre de nos sujets de stage étaient opérationnelles.  
-  En particluier, nous avons utilisé le gestionnaire de versions Git au travers du système de gestion de dépôts (forge) GitLab auquel nous avons appliqué une stratégie de création de branches appelée ''Git Flow``.
-  Ce modèle d'utilisation de Git vise à minimiser les conflits et les régressions, accentuer la visibilité des tâches en cours ou terminées et de scinder clairement les phases de développement du logiciel. 
+  En particulier, nous avons utilisé le gestionnaire de versions Git au travers du système de gestion de dépôts (forge) GitLab auquel nous avons appliqué une stratégie de création de branches appelée ''Git Flow``.
+  Ce modèle d'utilisation de Git vise à minimiser les conflits et les régressions, accentuer la visibilité des tâches en cours ou terminées et à scinder clairement les phases de développement du logiciel. 
   \`{A} cet effet nous avons adopté la démarche illustrée sur la figure \ref{fig:gitflow} qui se lit de bas en haut et où les commits sont représentés par des points.
   Cela consiste à travailler sur une branche de développement (\path{develop}), à partir de laquelle nous créons une branche par fonctionnalité (\path{feature}), éventuellement une branche \path{hotfix} pour une correction de bug
   et, enfin, une branche \path{realease} qui va aboutir sur la dernière version stable du logiciel.
@@ -114,8 +115,8 @@
   Les méthodes AGILE --notamment SCRUM-- préconnisent le recours à des échelles de quantification relatives plutôt qu'à des jours hommes ou d'autres échelles se voulant précises. 
   Concrètement on peut utiliser les valeurs de la suite de Fibonacci qui suivent ce que l'on appelle la courbe d'incertitude, à savoir qu'au plus une valeur est élevée, au plus l'écart avec la valeur suivante sera grande. 
   Nous avons estimé la complexité des unités de travail à réaliser selon une méthode également empruntée à SCRUM, appelée \emph{planning poker}. 
-  Tous les participants disposent d'un jeu de carte qui, dans notre cas, comporte les nombres $1\dfrac{2}, 1, 2, 3, 5, 8, 13, \infty$. 
-  L'effort de réalisation est ensuite estimé en même temps pour une tâche donnée, pusi soumis à discussion dans le cas de désaccord. 
+  Tous les participants disposent d'un jeu de carte qui, dans notre cas, comporte les nombres $\dfrac{1}2, 1, 2, 3, 5, 8, 13, \infty$. 
+  L'effort de réalisation est ensuite estimé en même temps pour une tâche donnée, puis soumis à discussion dans le cas de désaccord. 
   Cette pratique est à la fois rapide, ludique et présente l'intérêt de dénuer d'emblée la quantification de l'influence mutuelle des participants. 
   
   Ce Kanban a ainsi été adopté dans une optique d'ordonnancer les tâches et, accessoirement, de les répartir entre les membres de l'équipe. 
@@ -131,11 +132,12 @@
   Elle met en parallèle les résultats cartographiques du système avec un plan d'évacuation des locaux dans lesquels l'acquisition a pu être menée. 
   Pour des raisons pratiques, toutes les pièces n'ont pu être scannées, puisque celles-ci hébergent des collaborateurs ou directeur d'agence menant leurs activités. 
   
+  \textbf{Ici il manque une cartographie riche des locaux + un schéma qui reprend le plan d'évacuation pour les comparer. Manque aussi un paragraphe qui discute des résultats et des limites d'Hector SLAM et le résultat de 
+  la projection des objets détectés sur la carte (sous forme de screen shot où m'on voit la carto, un objet détecté sur le flux vidéo)}
   
   Enfin, la réussite du projet dans sa globalité a pu être attestée par les résultats d'une présentation devant des collaborateurs commerciaux et directeurs de projet qui est intervenue le 13 juin 2017.
   Cette étape a permis de recceuillir des avis extérieurs sur le projet lui-même et d'estimer sa potentielle viabilité commerciale et technique. 
   Ayant été positivement perçu, le système démonstrateur réalisé à été présenté brièvement auprès de Nexter System, enclin à organiser une rencontre à cet effet au mois de septembre. 
-  
   
   \subsection{Pourquoi continuer SRT2M}
   
@@ -145,13 +147,14 @@
   \begin{itemize}
    \item un manuel utilisateur interactif et ergonomique présenté au sein d'une interface web
    \item un manuel d'installation, agrémenté de résolutions problèmes pouvant être rencontrés lors de cette phase
-   \item la création d'une documentation automatique et, là aussi, intercative grâce au logiciel Doxygen
+   \item la création d'une documentation automatique et, là aussi, interactive grâce au logiciel Doxygen
    \item l'automatisation de l'installation pour la distribution Debian 8, notamment au moyen du gestionnaire de paquets apt, et la gestion des dépendances manquantes sur la station hôte
    \item l'adoption de ROS répondant à un critère de haute flexibilité fonctionnelle et matérielle
    \item l'adaptation des possibilités de l'IHM au caractère modulaire des éléments du middleware ROS 
   \end{itemize}
   
-  
+  \textbf{Ici j'ai envie de souligner l'intérêt de continuer le projet, en rappelant les diverses idées dont nous avons pu discuter : système distribué sur des véhicules autonomes avec des drônes etc... 
+  Peut-être qu'il est intéressant d'ajouter les images du scénario qu'on a présenté à Marc et Patrice ? }
   
 \section{Retour d'expérience}
   \subsection{Apports et difficultés du projet}
@@ -163,7 +166,7 @@
   Les aides conjointes de MM. Daumand et Hafiane, de vastes recherches documentaires et un intérêt certain pour ce sujet où tout était à construire ont fort heureusement motivé une rapide appropriation des problématiques et enjeux afférents. 
   
   Les outils utilisés tels que ROS et à plus faible mesure Qt, ou les fondements théoriques du SLAM puis d'Hector SLAM ont également nécessité des temps de compréhension et d'assimilation conséquents. 
-  Bien que n'ayant pas outrepassé le temps imparti à la recherche de solutions techniques, il est assez compliqué de passer plusieures semaines à approfondir des connaissances très spécifiques --comme dans le cas de ROS-- sans 
+  Bien que n'ayant pas outrepassé le temps imparti à la recherche de solutions techniques, il s'est avéré difficile de passer plusieures semaines à approfondir des connaissances très spécifiques --comme dans le cas de ROS-- sans 
   avoir la moindre idée de ce que donneront les débuts de l'implémentation. 
   Cet effet tunnel s'est trouvé renforcé du fait des délais d'acquisition du matériel et des incertitudes liées au fonctionnement du robot. 
   
@@ -180,9 +183,12 @@
   
   Bien qu'elle soit inclue dans un groupe international, l'agence SII Bourges affiche un esprit \emph{start-up} indéniable. 
   L'équipe sur place est à taille humaine, d'une moyenne d'âge située autours d'une trentaine d'années et présente de normes décontractées soutenues par une hiérarchie horizontale.
-  La société SII dénote d'une envie de séduire les plus jeunes actifs en breuvetant le slogan #FUNgenieur qui vise à dépoussiérer l'image du geek austère, en proposant salles de jeu, de sport ou de détente dans ses agences et, 
+  La société SII dénote d'une envie de séduire les plus jeunes actifs en breuvetant le slogan \#FUNgenieur qui vise à dépoussiérer l'image du geek austère, en proposant salles de jeu, de sport ou de détente dans ses agences et, 
   finalement, en misant sur un management de proximité accru.
-  \'{A} cet effet, Mme Aurélie Merlin, Campus Manager rattachée à l'agence Île-de-France encadre la communauté de stagiaires et participe à la faire vivre par le biais de défis hauts en couleurs : concours photo, présentation 
+  \`{A} cet effet, Mme Aurélie Merlin, Campus Manager rattachée à l'agence Île-de-France encadre la communauté de stagiaires et participe à la faire vivre par le biais de défis hauts en couleurs : concours photo, présentation 
   des stages en trois minutes, après-midi dédiés aux échanges entre stagiaires. 
-  Cette culture d'entreprise atypique 
+  Cette culture d'entreprise atypique fait de SII une entreprise favorable à une intégration réussie, permettant d'y envisager facilement un début de carrière professionnelle. 
   
+  Souhaitant exercer dans le domaine de la sécurité informatique, et mettre rapidement à profit la formation reçue à l'INSA Centre Val-de-Loire, j'ai accepté un poste de consultante en cyber-sécurité au sein de SII.
+  
+  \textbf{Manque une description un peu plus précise du poste}
