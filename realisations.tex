@@ -20,7 +20,7 @@ Afin d'en exposer clairement le périmètre, la figure \ref{fig:use-case} défin
 \end{figure}
 
 Ainsi, ce \emph{sous-système} doit permettre d'effectuer une cartographie de l'environnement d'un robot mobile, tout en donnant sa localisation. 
-L'acteur primaire du système pourra visualiser une carte, soit par le biais de données préalablement sauvegardées au sein de ce même système, soit grâce à des données acquises en temps réel par des périphériques dédiés. 
+L'acteur primaire du système pourra visualiser une carte, soit à partir de données préalablement sauvegardées au sein de ce même système, soit grâce à des données acquises en temps réel par des périphériques dédiés. 
 Cette visualisation implique la représentation d'obstacles statiques dans l'espace exploré, mais aussi la position et la trajectoire du robot en tout temps.
 Le téléguidage du robot par l'utilisateur doit également être assuré. 
 Un opérateur --typiquement un contributeur du système-- pourra jouer sur les paramètres de présentation des résultats, de la mise en réseau des périphériques ou de la définition de ces périphériques. 
@@ -115,7 +115,7 @@ Ces commandes transitent par le Raspberry Pi 3 qui les formattera et les transme
 Ce cheminement de données peut être parcouru dans le sens inverse pour remonter les données acquises par le LIDAR à savoir, 
 des mesures de distances spatiales, communiquées tous les 360\degre, pouvant être perçues comme des nuages de points. 
 
-Parallèlement, $M_{4}$ communique directement des ordres de vitesse et de direction au Wifibot par le biais de l'interface WiFi $i_{3}$. 
+Parallèlement, $M_{4}$ communique directement des ordres de vitesse et de direction au Wifibot à travers de l'interface WiFi $i_{3}$. 
 Ces commandes de direction sont quasi-instantanément suivies de réponses contenant les relévés odométriques des encodeurs du Wifibot, son niveau de batterie et le relevé de capteurs infrarouges présents 
 à l'avant du robot. Les réponses empruntent là encore le chemin inverse par le biais de la même interface. 
 
@@ -179,7 +179,7 @@ Un état de l'art sur le sujet a donc été mené, permettant de choisir l'algor
 \end{figure} 
   
 Robot Operating System, ou \gls{ROS}, est un middleware pour systèmes Unix destiné à la réalisation de projets robotiques écrits en C++ ou en Python.
-Il offre des fonctionnalités dédiées à la robotique --notamment par le biais de librairies-- mais aussi des moyens de communication et des outils facilitant le développement et le déploiement de tels systèmes. 
+Il offre des fonctionnalités liées à la robotique grâce à des librairies dédiées mais aussi des moyens de communication et des outils facilitant le développement et le déploiement de tels systèmes. 
 Il a ainsi été rapidement étudié puis adopté pour ce projet sous sa version Kinetic. 
 Notre utilisation de \gls{ROS} couvre les briques logicielles embarquées sur le Raspberry Pi et des briques présentes localement sur le poste de travail de l'utilisateur final. 
 Son fonctionnement passe par la création d'un réseau de n\oe{}uds\cite{Bib_ROS_nodes}, c'est-à-dire des exécutables dans l'écosystème \gls{ROS}, organisés autour d'un n\oe{}ud central appelé \gls{ROS} Master\cite{Bib_ROS_master}.
@@ -369,7 +369,7 @@ La sérialisation répond à un schéma générique composé d'une en-tête (\em
   \label{fig:buffer}
 \end{figure}
 
-Les éléments contenus par le header sont \path{tID}, un identifiant donnant le type de la donnée transmise, \path{pSize}, la taille du payload et un \path{padding} à $0$ qui vise à ce qu'il atteigne 20 octets. 
+Les éléments contenus par le header sont \path{tID}, un identifiant donnant le type de la donnée transmise, \path{pSize}, la taille du payload et un \path{padding} à $0$ qui vise à ce que le \emph{header} atteigne 20 octets. 
 La formation du \path{payload} dépend quant à elle des données à tansmettre. 
 La principale difficulté réside en la transmission de la grille d'occupation contenue par le topic \path{/map}. 
 Celle-ci contenant plus de $4 000 000$ de valeurs entières, nous nous sommes focalisé sur l'émission de mises à jour locales à chaque acquisition, plutôt que globales\footnote{Il en va de même pour la trajectoire où,
@@ -413,7 +413,7 @@ int Serializer::serializeMap( const nav_msgs::OccupancyGrid& map,
 
 Enfin, la figure \ref{fig:rosnet} fait également état du n\oe{}ud \path{/correlation} abonné aux résultats de détection d'objets d'intérêt et au topic \path{/scan}.
 Il est responsable du croisement de ces données afin de déterminer, quand cela est possible, les coordonnées d'un objet détecté à partir du flux vidéo.  
-La technique employée ici consiste à trouver pour chaque résultat de détection, la position du robot à l'instant de la détection ainsi que ou les faisceaux du LIDAR susceptibles d'avoir atteint l'objet. 
+La technique employée ici consiste à trouver pour chaque résultat de détection, la position du robot à l'instant de la détection ainsi que les faisceaux du LIDAR susceptibles d'avoir atteint l'objet. 
 Lorsque ces-derniers existent\footnote{Le plan parcouru par les faisceaux du LIDAR doit être compris entre les extrémités haute et basse de l'objet.} 
 nous devons transformer la distance et l'angle associés dans le système de coordonnées de la carte. 
 
@@ -467,13 +467,14 @@ nous devons transformer la distance et l'angle associés dans le système de coo
 	    $r.x \leftarrow pose.p.x + matched.r \times \cos(\ matched.\theta + pose.yaw\ )$\\
 	    $r.y \leftarrow pose.p.y + matched.r \times \sin(\ matched.\theta + pose.yaw\ )$\\
 	    $r.z \leftarrow LIDAR\_LENGTH + matched.r \times \tan(\ \dfrac{\pi}{2} - r.\theta\ )$\\
-	    $r.w \leftarrow 0.5 \times 2 \times matched.r \times \tan(\ \dfrac{r.w}{2}\ )$ \\
-	    $r.h \leftarrow 0.5 \times 2 \times matched.r \times \tan(\ \dfrac{r.h}{2}\ )$ 
+	    $r.w \leftarrow 0.5 \times 2 \times matched.r \times \tan(\ \dfrac{r.w}{2}\ )$ \\
+	    $r.h \leftarrow 0.5 \times 2 \times matched.r \times \tan(\ \dfrac{r.h}{2}\ )$ 
 	  }
 	}
       }
+      \Retour{1}
     }
-}
+  }
 }
 \end{algorithm}
 
@@ -516,7 +517,7 @@ void MainWindow::setWifibotInfo(SensorData sd)
 }
 \end{lstlisting}
 
-D'un point de vue formel, le fonctionnement de l'application est régi par une machine à état relativement simple, représentée figure \ref{fig:stateMachine}.
+D'un point de vue formel, le fonctionnement de l'application est régi par une machine à états relativement simple, représentée figure \ref{fig:stateMachine}.
 
 \begin{figure}[h]
   \centering
@@ -610,7 +611,7 @@ Nous exposons ici les principes qui sous-tendent cette démarche, nous amenant �
   \item le contrôle du réseau ROS depuis l'IHM
 \end{itemize}
 
-Qt offre un système de paramétrage des applications par le biais de fichiers texte et d'une classe \path{QSettings} indépendante de la plateforme utilisée
+Qt offre un système de paramétrage des applications s'appuyant sur des fichiers au format texte et d'une classe \path{QSettings} indépendante de la plateforme utilisée
 \footnote{En l'occurence, sur un système Unix, de tels fichiers seront stockés au format \path{.ini} sous \path{~/.config/<filename>.ini}}.
 Cette dernière permet l'écriture de paramètres selon le paradigme clé / valeur et hiérarchisés sous forme de groupe.  
 Dans notre IHM, une classe statique \path{SettingsManager} est utilisée pour écrire de tels paramètres, soit à l'initialisation de l'application soit lors de la configuration de celle-ci par l'utilisateur. 
@@ -654,8 +655,8 @@ tels que représentés figure \ref{fig:guicontrols}.
 
 Parallèlement, chaque nouvel identifiant sous \path{ros/<ID>} entraine l'instanciation de la classe \path{NodesLauncher} ou \path{NodesLauncherOverSSH} --en fonction du caractère local ou non du package-- et de la classe 
 \path{NodesKiller}. 
-Ces objets exécutent d'un shell Linux (\path{/bin/bash}) au sein d'un membre Qt de type \path{QProcess} permettant l'éxecution du launchfile afférent lorsque l'utilisateur presse le bouton ``Start'' du module.
-Ils sont aussi responsables de la redirection des sorties du processus vers les sorties dédiés à la journalisation des évènements de l'application\footnote{La classe \path{LogsHandler} est utilisée pour journaliser les messages d'une part dans des fichiers datés du répertoire d'exécution 
+Ces objets exécutent un shell Linux (\path{/bin/bash}) au sein d'un membre Qt de type \path{QProcess} permettant l'éxecution du launchfile afférent lorsque l'utilisateur presse le bouton ``Start'' du module.
+Ils sont aussi responsables de la redirection des sorties du processus vers les sorties dédiées à la journalisation des évènements de l'application\footnote{La classe \path{LogsHandler} est utilisée pour journaliser les messages d'une part dans des fichiers datés du répertoire d'exécution 
 de l'application et d'autre part, dans la console du panneau de contrôle}. 
 La classe \path{NodesKiller} va quant à elle émettre des commandes système vers le ROS Master afin de tuer les n\oe{}uds d'un package lorsque l'utilisateur souhaitera mettre fin à leur exécution. 
 
