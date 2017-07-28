@@ -4,7 +4,8 @@
 \section{Organisation du travail}
 \label{sec:orga}
   \subsection{Application du référentiel qualité interne}
-  
+  \label{sec:qualite-interne}
+
   Nous exposons ici les éléments fourni par SII ayant guidé de manière significative la conduite du projet. 
   Ceux-ci seront plus ou moins détaillés en fonction du temps consacré à leur mise en place.
   
@@ -56,7 +57,8 @@
     \caption{Sorties de la fonction \emph{Transmettre : Formater un message}}
   \end{figure}
   
-  Notons que la spécification des types de données d'entrées-sorties est donné dans un document externe. Ceux relatifs à l'exemple ci-dessus sont décrits en \textbf{Annexe XX}.  
+  Notons que la spécification des types de données d'entrées-sorties est donné dans un document externe. 
+  Relativement à l'exemple précédent, le type d'OCCUPANCY\_GRID est décrit en annexe \ref{annexe:2}.  
   
   \textbf{4. Traitements }
   
@@ -97,7 +99,7 @@
   
   \begin{figure}
     \centering
-      \includegraphics[width=.7\linewidth]{figures/gitflow}  
+      \includegraphics[width=.6\linewidth]{figures/gitflow}  
     \captionof{figure}{Politique de gestion de branches Git adoptée}
     \label{fig:gitflow}
   \end{figure}
@@ -128,12 +130,28 @@
   
   Nous nous intéressons dans un premier lieu à la fidélité des résultats de SLAM et dans un second temps, à une appréciation de l'ensemble du projet, incluant également les travaux d'Alban Chazot et bien sûr la vision de M. Daumand.  
   
-  La figure suivante donne un apperçu de la précision des résultats de SLAM. 
+  La figure \ref{fig:carto} donne un apperçu de la précision des résultats de SLAM. 
   Elle met en parallèle les résultats cartographiques du système avec un plan d'évacuation des locaux dans lesquels l'acquisition a pu être menée. 
-  Pour des raisons pratiques, toutes les pièces n'ont pu être scannées, puisque celles-ci hébergent des collaborateurs ou directeur d'agence menant leurs activités. 
+  Pour des raisons pratiques, toutes les pièces n'ont pu être scannées, puisque celles-ci hébergent des collaborateurs ou directeur d'agence menant leurs activités.
   
-  \textbf{Ici il manque une cartographie riche des locaux + un schéma qui reprend le plan d'évacuation pour les comparer. Manque aussi un paragraphe qui discute des résultats et des limites d'Hector SLAM et le résultat de 
-  la projection des objets détectés sur la carte (sous forme de screen shot où m'on voit la carto, un objet détecté sur le flux vidéo)}
+  \begin{figure}[h]
+    \centering
+      \includegraphics[width=1.\linewidth]{figures/plan}  
+    \captionof{figure}{\`{A} gauche, cartographie des locaux avec le logiciel, à droite, plan d'évacuation correspondant}
+    \label{fig:carto}
+  \end{figure}
+  
+  Les plan des locaux est complété par des cercles de couleur verte pour les pièces qui ont été au moins à moitié explorées et de couleur orange pour les pièces visibles à moins de $50\%$. 
+  Enfin nous représentons sur fond gris les pièces qui n'ont pas été scannées du tout. 
+  Le couloir central a été parcouru dans toute sa longueur et la porte d'entrée est pointée par une flèche noire sur les deux représentations, afin d'éviter toute confusion quant à la façon de les comparer. 
+  
+  On remarque empiriquement que les lieux cartographiés sont reconnaissables sans trop de difficultés, que leur agencement correspond à la réalité perçue et que les proportions des salles sont pour la plupart fidèles. 
+  On peut aussi noter la précision du rendu des obstacles fixes : portes, pieds de tables, de chaises ou du baby-foot situé au centre de l'accueil dont trois pieds sur quatre sont visibles et correctement situés. 
+  La géométrie des principales caractéristiques spatiales que sont les murs est également respectée, et peut être attestée par les angles droits des pièces ou la régularité du couloir. 
+  
+  Cependant le résultat n'est pas sans défauts et certaines erreurs méritent à être discutées. 
+  L'imperfection la plus flagrante se situe au niveau du bureau 2. 
+  Selon la cartographie celui-ci est aussi long que le bureau 3, tandis qu'il est, dans les faits, presque deux fois plus long. 
   
   Enfin, la réussite du projet dans sa globalité a pu être attestée par les résultats d'une présentation devant des collaborateurs commerciaux et directeurs de projet qui est intervenue le 13 juin 2017.
   Cette étape a permis de recceuillir des avis extérieurs sur le projet lui-même et d'estimer sa potentielle viabilité commerciale et technique. 
@@ -190,5 +208,8 @@
   Cette culture d'entreprise atypique fait de SII une entreprise favorable à une intégration réussie, permettant d'y envisager facilement un début de carrière professionnelle. 
   
   Souhaitant exercer dans le domaine de la sécurité informatique, et mettre rapidement à profit la formation reçue à l'INSA Centre Val-de-Loire, j'ai accepté un poste de consultante en cyber-sécurité au sein de SII.
+  Cette contractualisation concerne les clients \gls{ASD} du groupe, et plus particulièrement la société MBDA pour laquelle SII s'inscrit en tant que prestataire depuis plusieures années. 
+  Dès la rentrée prochaine, ma mission consistera dans un premier temps à appliquer des politiques de durcissement de systèmes d'exploitations Linux et Windows. 
+  Dans cette optique, je serais affectée au site du Dynasteur de l'agence SII \gls{IDF}. 
+  Cette embauche s'accompagne d'une possibilité de financement de formations certifiantes dans les domaines de la sécurité informatique (réseau, système ou applicative), constituant un facteur de motivation non négligeable.  
   
-  \textbf{Manque une description un peu plus précise du poste}
