@@ -29,7 +29,7 @@ Les périphériques matériel sont à ce stade réunis en un seul acteur ``Péri
 Il inclut le LIDAR et le robot qui permettent respectivement d'acquérir les mesures de distances aux obstacles et de déplacer la plateforme.
 On souligne aussi la présence d'un ``Composant logiciel'' qui interagit avec le système.
 Ce composant est vu comme une boîte noire qui fournit en sortie les résultats de détection et de classification d'objets d'intérêt rencontrés par le système.
-Dans les faits, ces résultats correspondent à la position, la taille et la \gls{classe} de chaque objet, ce qui nous permettra de les représenter sur la carte générée (cf. fonction $Voir_objets_detectes()$).
+Dans les faits, ces résultats correspondent à la position, la taille et la \gls{classe} de chaque objet, ce qui nous permettra de les représenter sur la carte générée (cf. fonction \path{Voir_objets_detectes()}).
 
 \subsection{Formalisation d'exigences}
 
@@ -71,6 +71,13 @@ La définition de ces exigences a permis d'entamer une phase de définition des 
 Les fonctionnalités principales de l'application dépendent de l'acquisition de mesures spatiales. 
 Ainsi, nous devions nous doter d'une dispositif capable de prendre ces mesures et de les relayer en quasi temps-réel jusqu'à un module de traitement, encore à définir. 
 
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=.2\linewidth]{figures/rplidar_a2}  
+  \captionof{figure}{RPLidar A2 utilisé durant le projet, développé par SLAMTEC}
+  \label{fig:rplidar}
+\end{figure}
+
 Le choix du matériel retenu a fait l'objet d'une veille technologique visant à comparer les différents \gls{LIDAR} présents sur le marché. 
 Ceux-ci ont pu être classés, outre selon leur prix, selon les critères suivants : 
 
@@ -84,21 +91,19 @@ Ceux-ci ont pu être classés, outre selon leur prix, selon les critères suivan
 \end{itemize}
 
 Le résultat de ce comparatif a débouché sur l'acquisition du RPLidar A2 visible sur la figure \ref{fig:rplidar}.
-
-\begin{figure}[h]
-  \centering
-    \includegraphics[width=.2\linewidth]{figures/rplidar_a2}  
-  \captionof{figure}{RPLidar A2 utilisé durant le projet, développé par SLAMTEC}
-  \label{fig:rplidar}
-\end{figure}
-
 Celui-ci est équipé d'un seul faisceau laser qui a la particularité de tourner sur 360\degre. 
 Cet équipement est donc adapté à la mesures des distances dans un espace plan, tout en impliquant une dépense acceptable. 
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=.5\linewidth]{figures/lidar-points}  
+  \captionof{figure}{Résultats de l'application constructeur du RPLidar A2}
+  \label{fig:lidar-points-cloud}
+\end{figure}
 La possibilité d'équiper le robot de servo-moteurs et d'un LIDAR à faisceau unique fixe moins onéreux a également été explorée, mais n'a pas été retenue au regard de la compléxité de mise en \oe{}uvre d'un tel dispositif, 
 du coût cumulé du LIDAR et des servo-moteurs et enfin, des fortes imprécisions potentiellement engendrées lors du mouvement du robot. 
+La figure \ref{fig:lidar-points-cloud} montre le nuage de points restitué par un logiciel intégré au kit de développement du LIDAR, utilisable sous Windows.  
 
 Par ailleurs, le robot mis à disposition du projet est un Wifibot Lab v3, muni d'une carte mère Windows Embedded. 
-
 Enfin, un nano-ordinateur Raspberry Pi 3 modèle B est utilisé à des fins de communication entre les briques embarquées et une station de travail qui réuni les modules de calcul et l'\gls{IHM}.
 
 Nous obtenons ainsi l'archtecture physique schématisée sur la figure \ref{fig:archiphy}, au travers de laquelle sont définis quatre modules principaux, notés $M_{i}$.
@@ -124,7 +129,7 @@ Ce cheminement de données peut être parcouru dans le sens inverse pour remonte
 des mesures de distances spatiales, communiquées tous les 360\degre, pouvant être perçues comme des nuages de points. 
 
 Parallèlement, $M_{4}$ communique directement des ordres de vitesse et de direction au Wifibot à travers de l'interface WiFi $i_{3}$. 
-Ces commandes de direction sont quasi-instantanément suivies de réponses contenant les relévés odométriques des encodeurs du Wifibot, son niveau de batterie et le relevé de capteurs infrarouges présents 
+Ces commandes de direction sont quasi-instantanément suivies de réponses contenant les relevés odométriques des encodeurs du Wifibot, son niveau de batterie et le relevé de capteurs infrarouges présents 
 à l'avant du robot. Les réponses empruntent là encore le chemin inverse par le biais de la même interface. 
 
 \section{Théorie et choix techniques}
@@ -199,7 +204,8 @@ les \gls{services}\cite{Bib_ROS_services} qui fonctionnent sur le modèle requê
 On notera que, dans le cas des topics, le format des données transmises correspond généralement à des types de messages définis par \gls{ROS} dans ses packages 
 internes\footnote{Lors d'une installation standard, ces paquets se situent sous \path{/opt/ros/<ROS-version>/share/} pour les messages et \path{/opt/ros/<ROS-version>/include/} pour les fichiers d'en-tête}. 
 Par exemple, le type de données \path{sensor_msgs/LaserScan} dispose d'un fichier de définition du même nom, portant l'extension \path{.msg} et d'un fichier d'en-tête qui permet la publication et l'abonnement aux topics 
-de ce type. \textbf{\`{A} titre d'exemple, le fichier \path{sensor_msgs/LaserScan.msg} est présenté en annexe X.}
+de ce type.
+\`{A} titre d'exemple, le fichier \path{sensor_msgs/LaserScan.msg} est présenté en \nameref{annexe:laserscan}.
 
 Le framework s'accompagne de nombreux utilitaires en ligne de commande qui permettent à l'utilisateur de configurer le réseau, de le sonder et de créer des noeuds à la volée pour diverses utilisations.
 
@@ -225,14 +231,14 @@ Ces packages sont définis comme des agglomérats logiques de n\oe{}uds et poss�
 Le fichier package.xml\cite{Bib_ROS_package} est le manifeste des paquets. Placé à la racine de chacun d'entre-eux, il en donne la définition (nom, version, auteur, license) ainsi que les dépendances. 
 Les fichiers CMakeLists.txt\cite{Bib_ROS_manifeste} sont les entrées du système de build CMake, invoqués dans la chaîne de compilation de catkin. 
 C'est ici que l'on définit les noms et fichiers sources associés à chaque n\oe{}ud du paquet, les sources étant généralement stockées sous le répertoire \path{catkin_workspace/src/<package_name>/src/}. 
-\textbf{Les annexes X et Y donnent des exemples correspondant à ces deux fichiers}. 
+L'\nameref{annexe:catkindocs} permet d'illustrer le formalisme de ces deux documents. 
 
 Les deux éléments précédents sont indispensables à la création de paquets dans l'environnement catkin. 
 Parallèlement, on relève la présence d'un fichier portant l'extension \path{.launch}, appelé launchfile.  
 Ce fichier optionnel permet d'exécuter, via un utilitaire en ligne de commandes, plusieurs n\oe{}uds en une seule fois. 
 Pour parser et exécuter le launchfile présent dans notre exemple on saisira simplement :
-
-\begin{lstlisting}[style=custombash]
+\\
+\begin{lstlisting}[style=customcpp]
 > roslaunch package_1 default.launch
 \end{lstlisting}
 
@@ -288,7 +294,7 @@ Durant cette étape, les résultats pouvaient être visualisés grâce à RViz, 
 La figure \ref{fig:rviz} illustre le résultat obtenu pour un jeu de test issu de la RobotCup German Open 2011. 
 Dans un deuxième temps, il a fallu adapter \gls{Hector SLAM} pour recevoir en entrée les données du \gls{LIDAR}, ce qui revient principalement créer des fichiers de lancement (\emph{launchfile})
 adaptés au périphériques d'acquisition. Dans notre cas nous avons créé deux fichiers distincts : l'un pour le mode d'exécution standard et l'autre pour un mode ``degub''.
-Nous avons également mis en place des éléments qui définissent les tranformations spatiales entre les différents périphériques matériels et qui seront évoqués dans la partie suivante. 
+Nous avons également mis en place des éléments qui définissent les tranformations spatiales entre les différents périphériques matériels et qui seront évoqués dans la partie \ref{subsection:ROSnodes}. 
 
 \begin{figure}[h]
   \centering
@@ -297,7 +303,8 @@ Nous avons également mis en place des éléments qui définissent les tranforma
   \label{fig:rviz}
 \end{figure}
 
-Ces différents composants et la manière dont ils ont été réalisés font l'objet de la partie \ref{subsection:ROSnodes}. 
+Sur la figure \ref{fig:rviz}, les zones non explorées figurent en gris foncé, les zones explorées mais vides en gris clair et les zones occupées en noir. 
+Le robot est resprésenté par trois composantes orthogonales de couleur bleue, verte et rouge et la trajectoire parcourue est une courbe rouge. 
 
 \section{Réalisations et architecture logicielles}
 
@@ -316,7 +323,7 @@ La définition du réseau doit alors s'inscrire comme une solution aux probléma
 \end{itemize}
 
 \begin{figure}[h]
-  \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/all_nodes}}%
+  \makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{figures/all_nodes}}%
   \captionof{figure}{Réseau ROS intégré au système}
   \label{fig:rosnet}
 \end{figure}
@@ -343,7 +350,7 @@ Les n\oe{}uds et topics impliqués dans ce processus sont représentés en bleu 
 Dans le premier cas, il suffit de définir l'identifiant d'un repère de référence (\emph{frame\_id}) et d'un repère fils (\emph{child\_frame\_id}) ainsi que la transformation que subit ce dernier, en s'assurant qu'il ne sera jamais amené à changer.
 Dans le second cas, il faut généralement passer par la création d'un noeud publiant la valeur de ce décallage régulièrement durant l'exécution. 
 Pour mieux saisir les enjeux soulevés par l'intégration d'\gls{Hector SLAM}, la figure \ref{fig:frames} donne les systèmes de coordonnées définis, 
-ainsi que les n\oe{}uds implémentés (les \emph{broadcaster}) responsables de la publication des transformations. 
+ainsi que les n\oe{}uds implémentés (les \emph{broadcasters}) responsables de la publication des transformations. 
 
 Le système \emph{map} est un repère fixe, ancré au sol, qui sert de référence au positionnement du robot sur le long terme\cite{Bib_frames}.
 \emph{base\_link} est un repère mobile par rapport à \emph{map} attaché sous la plateforme mobile en son centre. Une première transformation entre \emph{map} et \emph{base\_link} est requise par \gls{Hector SLAM}. 
@@ -353,7 +360,7 @@ Enfin, le n\oe{}ud \path{/base_link_to_laser_broadcaster} publie régulièrement
 Celui-ci n'étant jamais amené à changer nous sommes dans le cas d'une transformation statique définie de la manère suivante dans le launchfile d'Hector SLAM en mode d'exécution 
 standard\footnote{En mode ``debug'' cette transformation est non avenue puisqu'elle est déja comprise dans les données à rejouer, à savoir le bagfile} : 
 
-\begin{lstlisting}[language=xml]
+\begin{lstlisting}[style=custombash]
 <!-- Laser is set 25cm above robot base. Node arguments must be : 
 dx dy dz yaw pitch roll frame_id child_frame_id publishing_frequency_in_ms 
 -->
@@ -361,7 +368,6 @@ dx dy dz yaw pitch roll frame_id child_frame_id publishing_frequency_in_ms
 <node pkg="tf" type="static_transform_publisher" 
       name="base_link_to_laser_broadcaster" 
       args="0 0 0.25 0 0 0 base_link laser 100" />  
-
 \end{lstlisting}
 
 Nous obtenons ainsi un moteur de SLAM fonctionnel à partir duquel nous devons construire une \gls{IHM}. 
@@ -382,7 +388,9 @@ La formation du \path{payload} dépend quant à elle des données à tansmettre.
 La principale difficulté réside en la transmission de la grille d'occupation contenue par le topic \path{/map}. 
 Celle-ci contenant plus de $4 000 000$ de valeurs entières, nous nous sommes focalisé sur l'émission de mises à jour locales à chaque acquisition, plutôt que globales\footnote{Il en va de même pour la trajectoire où,
 dans un même souci d'optimisation, nous effectuons un différentiel entre les valeurs précédemment acquises et la nouvelle acquisition}. 
-Ainsi, le \path{payload} se construit de la manière suivante afin de désencombrer la bande passante et réduire la taille de la structure de données qui l'encapsule :
+Ainsi, le \path{payload} se construit de la manière suivante afin de désencombrer la bande passante et réduire la taille de la structure de données qui l'encapsule. 
+
+\newpage
 
 \begin{lstlisting}[style = customcpp]
 // Fill a buffer with occupancy grid local updates
@@ -422,9 +430,10 @@ int Serializer::serializeMap( const nav_msgs::OccupancyGrid& map,
 Enfin, la figure \ref{fig:rosnet} fait également état du n\oe{}ud \path{/correlation} abonné aux résultats de détection d'objets d'intérêt et au topic \path{/scan}.
 Il est responsable du croisement de ces données afin de déterminer, quand cela est possible, les coordonnées d'un objet détecté à partir du flux vidéo.  
 La technique employée ici consiste à trouver pour chaque résultat de détection, la position du robot à l'instant de la détection ainsi que les faisceaux du LIDAR susceptibles d'avoir atteint l'objet. 
-Lorsque ces-derniers existent\footnote{Le plan parcouru par les faisceaux du LIDAR doit être compris entre les extrémités haute et basse de l'objet.} 
-nous devons transformer la distance et l'angle associés dans le système de coordonnées de la carte. 
-
+Lorsque ces 
+derniers existent\footnote{Le plan parcouru par les faisceaux du LIDAR doit être compris entre les extrémités haute et basse de l'objet.} nous devons transformer la distance et l'angle associés dans le système de coordonnées de la carte. 
+L'algorithme suivant donne les principes implémentés à cet effet. 
+\\
 \IncMargin{1em}
 \begin{algorithm}[H]
  \caption{Algorithme de calcul des résultats de corrélation}
@@ -497,7 +506,7 @@ slots\footnote{Ce mécanisme peut être mis en parallèle avec les callbacks en 
 Ceux-ci ont la particularité d'occulter la démarche de liaison entre les parties communicantes et ne nécessitent pas de classe dédiée à cet effet. 
 Ils permettent de mettre en place simplement des connexions \emph{one-to-many}, \emph{many-to-one} ou encore \emph{many-to-many}.
 Un signal est une signature de fonction membre d'une classe, qui pourra être émis par ses instances. Les slots sont quant à eux des fonctions membres désignées par la macro Q\_SLOTS. 
-Ce mécamisme est illustré dans l'exemple suivant, tiré du code source du projet \textbf{à mettre en annexe plutôt...}. 
+Ce mécamisme est illustré dans l'exemple suivant, tiré du code source du projet. 
 
 \begin{lstlisting}[style=customcpp]
 // sensorDataAvailable signal connection to setWifibotInfo slot
@@ -525,8 +534,6 @@ void MainWindow::setWifibotInfo(SensorData sd)
 }
 \end{lstlisting}
 
-D'un point de vue formel, le fonctionnement de l'application est régi par une machine à états relativement simple, représentée figure \ref{fig:stateMachine}.
-
 \begin{figure}[h]
   \centering
     \includegraphics[width=.7\linewidth]{figures/state_machine}  
@@ -534,7 +541,8 @@ D'un point de vue formel, le fonctionnement de l'application est régi par une m
   \label{fig:stateMachine}
 \end{figure}
 
-Ces états servent à gérer l'ensemble des instances utiles à n'importe quel instant de l'exécution en dissociant clairement ce qui est du ressort de chacun des modes de fonctionnement définis. 
+D'un point de vue formel, le fonctionnement de l'application est régi par une machine à états relativement simple, représentée figure \ref{fig:stateMachine}.
+Ces états facilitent la gestion des instances utiles à n'importe quel instant de l'exécution en dissociant clairement ce qui est du ressort de chacun des modes de fonctionnement définis. 
 Le mode \emph{Réception} satisfait l'exigence principale du projet, à savoir présenter en temps-réel les résultats de \gls{SLAM} tout en assurant le contrôle du robot. 
 Le mode \emph{Backup} répond à une fonctionnalité additionnelle offrant la possibilité à l'utilisateur de rejouer des données précédemment enregistrées. 
 Le passage d'un état à l'autre est symbolisé par des flèches portant le nom de la méthode invoquée à cet effet.
@@ -542,14 +550,14 @@ Ces méthodes visent à libérer la mémoire relative au ressources dynamiques d
 l'état du système. 
 On note que les fonctions de transition sont des slots atteint par des interactions spécifiques de l'utilisateur sur la fenêtre graphique. 
 
-La figure \ref{fig:modelIHM} expose quant à elle les classes et packages développés avec Qt pour répondre aux exigences fonctionnelles et d'interface précédemment formulées.   
-Sont également représentés les moyens de communications mis en place entre l'IHM et les autres éléments constituant le projet : le réseau \gls{ROS} et la couche d'exploitation du Wifibot. 
-
 \begin{figure}[h]
   \makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{figures/ihm-model}}%
   \captionof{figure}{Modèlisation logicielle de l'Interface Homme-Machine}
   \label{fig:modelIHM}
 \end{figure}
+
+La figure \ref{fig:modelIHM} expose quant à elle les classes et packages développés avec Qt pour répondre aux exigences fonctionnelles et d'interface précédemment formulées.   
+Sont également représentés les moyens de communications mis en place entre l'IHM et les autres éléments constituant le projet : le réseau \gls{ROS} et la couche d'exploitation du Wifibot.
 
 Le point d'entrée de l'application est la classe \path{main.cpp} qui instancie la fenêtre principale de l'application \path{MainWindow}\cite{Bib_qmainwindow} et une classe \path{Apploader} spécifique à notre architecture.
 Cette dernière maintient et met à jour la machine à états présentée en \ref{fig:stateMachine} gérant ainsi le cycle de vie de toutes les autres instances.  

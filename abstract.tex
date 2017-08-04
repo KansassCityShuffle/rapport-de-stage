@@ -1,30 +1,38 @@
-\begin{abstract}
-    Pour répondre aux besoins qui motivent leur réalisation, les systèmes robotiques mobiles doivent s'appuyer sur une connaissance plus ou moins fiable de leur environnement. 
-    On distingue la perception de l'environnement externe du robot de la perception que le robot a de lui-même --en tant que plateforme mobile-- au sein de cet environnement.
-    Ces deux versants, qui tiennent une place prépondérante dans le domaine des véhicules autonomes ou intelligents, 
-    sont connus sous le nom de SLAM (Localisation et Cartographie Simultannées). 
-    Ce rapport aborde ces questions au travers de la spécification, de la conception et de l'implémentation de briques logicielles destinées à contrôler un robot mobile 
-    et rendre état de son environnement externe tout comme de sa localisation en temps réel.   
-    Le projet décrit dans ce document recouvre le système complet, allant des périphériques physiques d'acquisition de données jusqu'à la présentation des résultats au travers d'une 
-    IHM interactive. 
+\begin{otherlanguage}{british}
+  \begin{abstract}
 
-    In order to carry out specific tasks, robotic systems must rely on a consitent environment perception. 
-    Two types of environment perception can be distinguish. The first is about external environment, and the second is about the location of the mobile plateform in this environment.   
-    These two complementary aspects are known as SLAM (Simultaneous Localisation And Mapping). 
-    This report adresses these issues through the specificaiton, the conception and the implementation of software components. 
+This document deals about achievements conducted for \gls{SII} --the ``Company for Industrial Information Technology''-- as a part of an internship in the engineering school INSA Centre Val-de-Loire.  
+It completes the Security and Information Technologies school programme and lies under the aegis of a partnership between \gls{SII} and INSA Centre Val-de-Loire. 
+My work in the company is placed under \emph{SII Research} organization. 
+This entity intends to build innovating offers as well as communicating around technologically advanced topics through proof of concept projects.
+Also called demonstrators, theese achievements are financed with SII own resouces and must intrinsically address a major group of clients. 
+For their parts, my studies and tasks are directed to Aero-Space Defense sector through the following problem. \\
+In order to carry out specific tasks, robotic systems must rely on consitent environment perception which can be distinguished into different types.
+On one hand we consider external environment like spatial features or obstacles and, on the second hand, the location of the mobile platform itself in this external environment.   
+These complementary aspects are better known as \gls{SLAM}, for Simultaneous Localisation And Mapping. 
+\gls{SLAM} algorithms implementation typically requires an external measurement system such as a \gls{LIDAR}, for LIght Detection And Ranging, and internal wheels encoders able to restitute odometry records. 
+This report adresses these issues through the specification, the conception and the implementation of software components that intend to control a mobile robot and compute his environment perception in real time. 
+The project described here covers the whole system, from physical acquisition devices to results presentation through a human-machine interface.
+It relies on the mobile robot \emph{Wifibot Lab} equipped with the \emph{RPLidar A2} \gls{LIDAR} for spatial distances acquisition. 
+Computations are centralized on a user workstation, where part of processing is handled by a \gls{ROS} (Robot Operating System) network.  
+Presentation and control interface, for its part, is written in C++ with the Qt Library. 
+ 
+ 
+    \begin{center}
+      \textbf{Mots-clés}   
+      
+      Cartographie et Localisation Simultannées
+      
+      Développement logiciel
+      
+      Temps-réel
+      
+      Système embarqué
+      
+      Robot Operating System
+    \end{center}
 
-  \begin{center}
-    \textbf{Mots-clés}
-    
-    Cartographie et Localisation Simultannées
-    
-    Développement logiciel
-    
-    Temps-réel
-    
-    Système embarqué
-    
-    Robot Operating System
-  
-  \end{center}
-\end{abstract}
+      
+ \end{abstract}
+
+\end{otherlanguage}

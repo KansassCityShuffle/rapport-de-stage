@@ -1,10 +1,10 @@
-\documentclass[a4paper, 11pt]{report} 
+\documentclass[a4paper, 12pt]{report} 
 
 %language and encoding
 \usepackage[obeyspaces, spaces]{url}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[francais]{babel}
+\usepackage[british,francais]{babel}
 \usepackage{parskip}
 \usepackage{hyperref}
 \usepackage{eurosym}
@@ -16,6 +16,7 @@
 \usepackage{microtype}
 \usepackage{dirtree}
 \usepackage{tabto}
+\usepackage{rotating}
 %police et mise en page (marges) du document	
 \usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
 \usepackage{setspace}
@@ -36,6 +37,24 @@
 \definecolor{comment-color}{RGB}{243, 58, 37}
 \definecolor{red-stbl}{HTML}{C92525}
 % coding style
+\lstdefinestyle{customcatkin}
+{
+  tabsize=4,
+  frame=single,
+  numbers=left,
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  xleftmargin=\parindent,
+  showstringspaces=false,
+  language=make,
+  commentstyle=\color{comment-color},
+  basicstyle={\ttfamily\footnotesize},
+  keywordstyle = {\color{key-color}},
+  keywordstyle = [2]{\color{comment-color}},
+  otherkeywords = {add_definitions, find_package, catkin_package, include_directories, add_executable, target_link_libraries, install,\#},
+  morekeywords = [1]{add_definitions, find_package, catkin_package, include_directories, add_executable, target_link_libraries, install},
+  morekeywords = [2]{\#},
+}
 \lstdefinestyle{customcpp}
 {
   tabsize=4,
@@ -63,30 +82,26 @@
 }
 \lstdefinestyle{custombash}
 {
+  frame=single,
+  numbers=left,
   belowcaptionskip=1\baselineskip,
   breaklines=true,
   xleftmargin=\parindent,
   language=bash,
   showstringspaces=false,
   basicstyle={\ttfamily\footnotesize},
-  commentstyle=\color{blue-sii!40!black},
+  commentstyle=\color{comment-color},
+    keywordstyle = [3]{\color{teal}},
   %identifierstyle=\color{blue-sii},
   stringstyle=\color{string-color},
   directivestyle=\color{blue},
   keywordstyle = {\color{key-color}},
   keywordstyle = [2]{\color{key-color}},
-  otherkeywords = {roslaunch},
+  otherkeywords = {roslaunch, float32, Header, string, uint32},
+  morekeywords = [1]{float32, Header, string, uint32},
   morekeywords = [2]{roslaunch},
 }
-\lstdefinestyle{customasm}{
-  belowcaptionskip=1\baselineskip,
-  frame=L,
-  xleftmargin=\parindent,
-  language=[x86masm]Assembler,
-  basicstyle= \ttfamily,
-  commentstyle=\itshape\color{purple!40!black},
-}
-\lstset{escapechar=@,style=customcpp}
+\lstset{escapechar=@}
 
 \input{glossary}
 

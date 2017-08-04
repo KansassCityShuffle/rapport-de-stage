@@ -1,0 +1,103 @@
+\chapter*{Annexe 3}
+\label{annexe:occupancygrid}
+\addcontentsline{toc}{chapter}{Annexe 3}
+
+%changer le format des sections, subsections pour apparaittre sans le num de chapitre
+\makeatletter
+\renewcommand{\thesection}{\@arabic\c@section}
+\makeatother
+
+%recommencer la numérotation des section à "1"
+\setcounter{section}{0}
+
+Cette annexe détaille les types de données énumérés dans le document de Spécification Technique de Besoin Logiciel qui ont été évoqués plus en amont dans ce rapport, section \nameref{sec:qualite-interne}. 
+On rappelle que la présentation de ces types est motivée par l'idée d'exposer une démarche documentaire sous son aspect formel --le contenu des données elles-mêmes ou leur signification n'ayant pas de réel intérêt ici. 
+Notons qu'à chaque fois qu'un champ issu d'une structure de données correspond également à un type structuré, on déroulera en cascade la définition jusqu'à ce que tout puisse être décrit avec des types de base. 
+
+\section{Message OCCUPANCY\_GRID}
+
+Topic: \path{/map} \\
+Type: \path{nav_msgs/OccupancyGrid} \\
+Emetteur: \path{/hector_mapping} \\
+Destinataire: \path{/map_bridge} \\
+Fréquence d’émission moyenne : $0,5$ Hz \\
+Description: Emis par SLAM, donne la probabilité d’occupation de la grille représentant la carte \\
+Contenu:
+
+\begin{figure}[h]
+    \begin{tabular}{|l|l|l|l|}
+      \hline
+      \textbf{Contenu} & \path{header} & \path{info} & \path{data} \\
+      \hline
+      \textbf{Type} & \path{std_msgs/Header} & \path{std_msgs/MapMetaData} & \path{int8[]}\\
+      \hline
+    \end{tabular}
+  \caption{Contenu du message Occupancy\_Grid}
+\end{figure}
+
+\subsection{Header}
+\begin{figure}[h]
+    \begin{tabular}{|l|l|l|l|}
+      \hline
+      \textbf{Contenu} & \path{seq} & \path{stamp} & \path{frame_id} \\
+      \hline
+      \textbf{Type} & \path{uint32} & \path{time} & \path{string}\\
+      \hline
+    \end{tabular}
+  \caption{Contenu du message Header}
+\end{figure}
+\newpage
+\subsection{Info}
+\begin{figure}[h]
+    \begin{tabular}{|l|l|l|l|l|l|}
+      \hline
+      \textbf{Contenu} & \path{map_load_time} & \path{resolution} & \path{width} & \path{height} & \path{origin}\\
+      \hline
+      \textbf{Type} & \path{time} & \path{float32} & \path{uint32} & \path{uint32} & \path{geometry_msgs/Pose}\\
+      \hline
+    \end{tabular}
+  \caption{Contenu du message Info}
+\end{figure}
+
+\subsection{Origin}
+\begin{figure}[h]
+    \begin{tabular}{|l|l|l|}
+      \hline
+      \textbf{Contenu} & \path{position} & \path{orientation} \\
+      \hline
+      \textbf{Type} & \path{geometry_msgs/Point} & \path{geometry_msgs/Quaternion} \\
+      \hline
+    \end{tabular}
+  \caption{Contenu du message Origin}
+\end{figure}
+
+\subsection{Position}
+\begin{figure}[h]
+    \begin{tabular}{|l|l|l|l|}
+      \hline
+      \textbf{Contenu} & \path{x} & \path{y} & \path{z}\\
+      \hline
+      \textbf{Type} & \path{float64} & \path{float64} & \path{float64}\\
+      \hline
+    \end{tabular}
+  \caption{Contenu du message Position}
+\end{figure}
+
+\subsection{Orientation}
+\begin{figure}[h!]
+    \begin{tabular}{|l|l|l|l|l|}
+      \hline
+      \textbf{Contenu} & \path{x} & \path{y} & \path{z} & \path{w}\\
+      \hline
+      \textbf{Type} & \path{float64} & \path{float64} & \path{float64} & \path{float64}\\
+      \hline
+    \end{tabular}
+  \caption{Contenu du message Orientation}
+\end{figure}
+
+\subsection{Data}
+Représente une carte à 2 dimensions où chaque cellule contient sa probabilité d’occupation. 
+Les lignes ont la priorité dans l’indexage de la carte.
+La carte commence à la position $(0,0)$.
+Les probabilités sont comprises dans $[0,100]$.
+-1 représente une case non explorée.
