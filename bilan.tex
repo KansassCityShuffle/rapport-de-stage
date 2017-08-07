@@ -6,7 +6,7 @@
   \subsection{Application du référentiel qualité interne}
   \label{sec:qualite-interne}
 
-  Nous exposons ici les éléments fourni par SII ayant guidé de manière significative la conduite du projet. 
+  Nous exposons ici les éléments fournis par SII ayant guidé de manière significative la conduite du projet. 
   Ceux-ci seront plus ou moins détaillés en fonction du temps consacré à leur mise en place.
   
     \begin{figure}[h]
@@ -21,9 +21,9 @@
   Cette énumération haut-niveau permet d'appréhender simplement et rapidement le périmètre du logiciel ciblé. 
   Cependant, la réalisation de ce document en bonne et dûe forme nécessite une liste exaustive d'exigences fonctionnelles vues comme des ensembles de fonctions qu'il convient de décrire en terme de rôle, d'entrées, de sorties et
   de traitements. 
-  Dans cadre de ce stage, nous définissons des fonctions comprises dans des modules distincts et étant reliées de la manière présentée figure \ref{fig:rel-fonctions}.
+  Dans le cadre de ce stage, nous définissons des fonctions comprises dans des modules distincts et étant reliés comme présenté sur la figure \ref{fig:rel-fonctions}.
   Puis, pour chacune des fonctions, on va définir des sous-fonctions, idéalement jusqu'à un niveau de granularité maximal où tous les types de données sont énumérés. 
-  Par exemple, on établit que la fonction \emph{Transmettre} du module \textbf{\textcolor{red-stbl}{Map\_bridge}} regroupe les quatre sous-fonctions \emph{Recevoir un message}, \emph{Formater un message} et \emph{\'{E}mettre un message}. 
+  Par exemple, on établit que la fonction \emph{Transmettre} du module \textbf{\textcolor{red-stbl}{Map\_bridge}} regroupe les trois sous-fonctions \emph{Recevoir un message}, \emph{Formater un message} et \emph{\'{E}mettre un message}. 
   Afin d'illustrer cette démarche, nous donnons ici pour exemple la spécification de la fonction \emph{Transmettre : Formater un message}. 
   
   \textbf{1. Rôles } \\
@@ -73,15 +73,16 @@
   
     \hspace{10mm} Si OLD\_OCCUPANCY\_GRID existe : 
     
-    \hspace{10mm} On compare le champ ``data'' de OCCUPANCY\_GRID et de OLD\_OCCUPANCY\_GRID. 
+    \hspace{10mm} On compare le champ ``data'' de OCCUPANCY\_GRID et de 
+    \\ OLD\_OCCUPANCY\_GRID. 
     
     \hspace{10mm} On crée la structure MAP à partir des valeurs de ``data`` qui diffèrent. 
     
-    \hspace{10mm} MAP est une chaîne de caractères dont les valeurs sont séparées par des '', ``.\\ 
+    \hspace{10mm} MAP est une chaîne de caractères dont les valeurs sont séparées par des ",".\\ 
   \textbf{$[$FIN\_REQ$]$}
   
-  Le Document de Conception Logiciel est quant à lui intervenu plus tard dans l'avancée du projet. 
-  Il consiste ne la formalisation des éléments conceptuels, en terme d'architecture physique et logicielle du projet. 
+  Le Document de Conception Logicielle est quant à lui intervenu plus tard dans l'avancée du stage. 
+  Il consiste à formaliser les éléments conceptuels, en termes d'architecture physique et logicielle du projet. 
   Ces briques ayant été largement explicitées au long de ce rapport nous n'attayerons pas d'avantage ce point. 
   
   Par ailleurs, un planning présentant une granularité hebdomadaire a été effectué au mois de mars, ce document est présenté en \nameref{annexe:planning}.
@@ -91,8 +92,8 @@
   
   \subsection{Vers une conduite AGILE adaptée}
   
-  Au référentiel interne de qualité du logiciel se sont ajoutées à la gestion de ce projet certaines bonnes pratiques issues de la formation en Architecure et Sécurité du Logiciel prodiguée à l'INSA Centre Val-de-Loire.
-  En particulier, nous avons utilisé le gestionnaire de versions Git au travers du système de gestion de dépôts (forge) GitLab auquel nous avons appliqué une stratégie de création de branches appelée ''Git Flow``.
+  Au référentiel interne de qualité du logiciel se sont ajoutées certaines bonnes pratiques issues de la formation en Architecture et Sécurité du Logiciel prodiguée à l'INSA Centre Val-de-Loire.
+  En particulier, nous avons utilisé le gestionnaire de versions Git au travers du système de gestion de dépôts (forge) GitLab auquel nous avons appliqué une stratégie de création de branches dite \og Git Flow \fg{}.
     \begin{figure}[h]
     \centering
       \includegraphics[width=.6\linewidth]{figures/gitflow}  
@@ -103,7 +104,7 @@
   \`{A} cet effet nous avons adopté la démarche illustrée sur la figure \ref{fig:gitflow} qui se lit de bas en haut et où les commits sont représentés par des points.
   Cela consiste à travailler sur une branche de développement (\path{develop}), à partir de laquelle nous créons une branche par fonctionnalité (\path{feature}), éventuellement une branche \path{hotfix} pour une correction de bug
   et, enfin, une branche \path{realease} qui va aboutir sur la dernière version stable du logiciel.
-  Cette branche est ensuite répercutée sur \path{develop} et \path{master}, dans le premier cas  pour continuer les actions de développement et dans le second, afin de permettre la récupération des sources ou son déploiement. 
+  Cette branche est ensuite répercutée sur \path{develop} et \path{master}, dans le premier cas  pour continuer les actions de développement et dans le second, afin de permettre la récupération des sources ou leur déploiement. 
   
   Aussi, l'\path{Apploader} a constitué une refonte majeure de l'architecture du logiciel qui a été conceptualisée et développée en équipe. 
   Afin de répartir les tâches que nécessitait son implémentation, nous avons pu expérimenter l'utilisation d'un \gls{Kanban} recensant : 
@@ -114,8 +115,8 @@
    \item les dépendances de certaines tâches les unes par rapport aux autres
   \end{itemize}
 
-  Définir la ''complexité`` d'une tâche revient à lui attribuer un score en se référant aux scores attribués pour les tâches précédentes. 
-  Les méthodes AGILE --notamment SCRUM-- préconnisent le recours à des échelles de quantification relatives plutôt qu'à des jours hommes ou d'autres échelles se voulant précises. 
+  Définir la \og complexité \fg{} d'une tâche revient à lui attribuer un score en se référant aux scores attribués pour les tâches précédentes. 
+  Les méthodes AGILES --notamment \gls{SCRUM}-- préconnisent le recours à des échelles de quantification relatives plutôt qu'à des jours hommes ou d'autres échelles se voulant précises. 
   Concrètement on peut utiliser les valeurs de la suite de Fibonacci qui suivent ce que l'on appelle la courbe d'incertitude, à savoir qu'au plus une valeur est élevée, au plus l'écart avec la valeur suivante sera grande. 
   Nous avons estimé la complexité des unités de travail à réaliser selon une méthode également empruntée à SCRUM, appelée \emph{planning poker}. 
   Tous les participants disposent d'un jeu de carte qui, dans notre cas, comporte les nombres $\dfrac{1}2, 1, 2, 3, 5, 8, 13, \infty$. 
@@ -124,7 +125,7 @@
   
   Ce Kanban a ainsi été adopté dans une optique d'ordonnancer les tâches et, accessoirement, de les répartir entre les membres de l'équipe. 
   Il a aussi permis d'attester visuellement de nos avancées respectives et du nombre de tâches en cours permettant un allègement ou une répartition de la charge si besoin.
-  La consultation du nombre de tâches restantes a également joué dans nos décisions de poursuivre telle ou telle fonctionnalité au profit d'autres par exemple. 
+  La consultation du nombre de tâches restantes a également joué dans nos décisions de poursuivre telle ou telle fonctionnalité au profit d'autres. 
   
 \section{Résultats en vue d'un prolongement}  
   \subsection{Un module de SLAM en adéquation avec les attentes du projet}
@@ -142,7 +143,7 @@
     \label{fig:carto}
   \end{figure}
   
-  Les plan des locaux est complété par des cercles de couleur verte pour les pièces qui ont été au moins à moitié explorées et de couleur orange pour les pièces visibles à moins de $50\%$. 
+  Le plan des locaux est complété par des cercles de couleur verte pour les pièces qui ont été au moins à moitié explorées et de couleur orange pour les pièces visibles à moins de $50\%$. 
   Enfin nous représentons sur fond gris les pièces qui n'ont pas été scannées du tout. 
   Le couloir central a été parcouru dans toute sa longueur et la porte d'entrée est pointée par une flèche noire sur les deux représentations, afin d'éviter toute confusion quant à la façon de les interpréter. 
   
@@ -165,17 +166,17 @@
   En effet, il n'est pas possible d'extraires des caractéristiques spatiales autres que des murs droits, jusqu'à ce que l'entrebaillement de la porte du bureau 2 ne soit visible. 
   Dans ce cas, l'association de données interne au processus de SLAM va fusionner les repères perçus à différents points de la zone traversée, générant des erreurs de cartographie et de localisation.  
   Ce phénomène est observable lors du téléguidage du robot à travers le couloir, \gls{Hector SLAM} va retourner des positions successives identiques sur quelques mètres alors que la position réelle du robot a évolué.
-  La zone bleue sur le plan d'évacuation représente la portion de l'espace parcourue sur laquelle \gls{Hector SLAM} a estimé que la plateforme faisait du ''sur-place''. 
+  La zone bleue sur le plan d'évacuation représente la portion de l'espace parcouru sur laquelle \gls{Hector SLAM} a estimé que la plateforme faisait du \og sur-place \fg{}. 
   
-  Une réponse à cette problématique pourrait être de se fier d'avantage à l'odométrie. puisque les encodeurs des roues du robot détiennent l'information jusqu'ici manquante : le robot a avancé. 
+  Une réponse à cette problématique pourrait être de se fier d'avantage à l'odométrie, puisque les encodeurs des roues du robot détiennent l'information jusqu'ici manquante : le robot a avancé ou reculé. 
   Or Hector SLAM a été choisi spécifiquement pour sa faculté à se baser en priorité sur les données issues du LIDAR. 
-  Ce moteur de SLAM présente des limites intrinsèques pour une utilisation dans des environnements lisses, où peu de repères spatiaux évidents sont perceptibles.  
+  Ce moteur de SLAM présente donc des limites intrinsèques pour une utilisation dans des environnements lisses, où peu de repères spatiaux évidents sont perceptibles.  
   L'amélioration des résultats dans notre couloir reviendrait à utiliser un LIDAR à plus grande portée, capable de déceller des caractéristiques plus lointaines
   \footnote{On rappelle que la portée maximale du RPLidar A2 est de $6m$.}.
   
   Enfin, la réussite du projet dans sa globalité a pu être attestée par les résultats d'une présentation devant des collaborateurs commerciaux et directeurs de projet qui est intervenue le 13 juin 2017.
-  Cette étape a permis de recceuillir des avis extérieurs sur le projet lui-même et d'estimer sa potentielle viabilité commerciale et technique. 
-  Ayant été positivement perçu, le système démonstrateur réalisé à été présenté brièvement auprès de Nexter Systems, enclin à organiser une rencontre à cet effet au mois de septembre. 
+  Cette étape a permis de reccueillir des avis extérieurs sur le projet lui-même et d'estimer sa potentielle viabilité commerciale et technique. 
+  Ayant été positivement perçu, le système démonstrateur réalisé a été présenté brièvement auprès d'interlocuteurs de Nexter Systems, enclins à organiser une rencontre à cet effet au mois de septembre. 
   
   \subsection{Pourquoi et comment envisager la continuité de SRT2M ?}
   
@@ -192,7 +193,7 @@
   \end{itemize}
   
   
-  Par ailleurs, ce projet mené de bout en bout suscité un foisonnement d'idées applicatives, dont nous rappelons ici le scénario majeur : une application millitaire facilitant l'accès à des informations stratégiques. 
+  Par ailleurs, ce projet mené de bout en bout a suscité un foisonnement d'idées applicatives, dont nous rappelons ici le scénario majeur : une application millitaire facilitant l'accès à des informations stratégiques. 
   Tout d'abord, la mise en \oe{}uvre d'algorithmes de SLAM aboutit généralement sur des systèmes capables de naviguer en autonomie ou semi-autonomie. 
   Moyennant une adaptation du matériel à cet effet, cette fonctionnalité peut être atteinte rapidement. 
   Elle constitue aussi un pré-requis aux des applications envisagées. 
@@ -220,7 +221,7 @@
   On peut également envisager l'immersion du système dans des environnements qualifiés de \gls{USAR}.  
   Comme beaucoup d'applications robotiques issues du framework ROS, \gls{Hector SLAM} a été éprouvé lors de compétitions dédiées à la recherche de victimes. 
   Dans ce cas, il convient de définir quelles sont les situations de secourisme ciblées par le système : incendie, raz-de-marée, expositions radio-actives ou à d'autres substances toxiques ? 
-  La réponse à ces questions permettra d'évaluer le coût du matériel adapté à ces scénarios ainsi que les temps de recherche, spécification, développement et tests susceptibles assurant un nouveau produit minimum. 
+  La réponse à ces questions permettra d'évaluer le coût du matériel adapté à ces scénarios ainsi que les temps de recherche, spécification, développement et tests susceptibles d'assurer un nouveau produit minimum viable. 
   
 \section{Retour d'expérience}
   \subsection{Apports et difficultés du projet}
@@ -242,7 +243,7 @@
   
   Enfin, j'ai particulièrement apprécié l'alternance entre une période assez longue de travail individuel, et un travail en équipe --certes restreinte-- dans une seconde phase du développement. 
   Dans le premier cas, cela force à une organisation, une prise de décisions et de responsabilités individuelles accrues qui n'ont que très peu été expérimentées lors de projets scolaires au long-cours.
-  Le deuxième temps de développement avec Alban Chazot a permi l'expérimentation d'outils issus de méthodes AGILES et adaptés à notre équipe minimale.  
+  Le deuxième temps de développement avec Alban Chazot a permis l'expérimentation d'outils issus de méthodes AGILES et adaptés à notre équipe minimale.  
   Cette deuxième phase s'est faite sur un ton plus détendu, les fonctionnalités primordiales du système ayant été présentées et validées. 
   
   \subsection{\'{E}volution personnelle au sein de la structure}

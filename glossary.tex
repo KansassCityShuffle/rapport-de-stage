@@ -107,7 +107,7 @@
 {
   name={SRT2M},
     description={Système Robotique Tactique Multi-Missions pour la surveillance et l'aide à la prise de décisions dans les milieux à risques. 
-    C'est le nom donné au système final intégrant les briques logicielles et physiques issues de mon stage et de celui de M. Chazot}
+    C'est le nom donné au système final intégrant les briques logicielles et physiques issues de mon stage et de celui d'Alban Chazot}
 }
 
 \newglossaryentry{DCL}
@@ -144,11 +144,11 @@
 \newglossaryentry{landmarks}
 {
   name={points de repères},
-    description={Les points de repère sont des caractéristiques observables par le biais de capteurs du robot, lui permettant de se situer dans son environnement et de le carographier. 
+    description={Les points de repères sont des caractéristiques observables par le biais de capteurs du robot, lui permettant de se situer dans son environnement et de le cartographier. 
     La qualité d'un point de repère s'évalue en fonction des caractéristiques suivantes :
     \begin{itemize}
     \item la facilité de ré-observabilité
-    \item la possibilité de discrimines des poinst de repères individuels 
+    \item la possibilité de discriminer des points de repères individuels 
     \item leur quantité dans l'environnement
     \item leur caractère stationnaire
     \end{itemize}
@@ -166,32 +166,32 @@
 {
   name={XML-RPC},
     description={XML-RPC est un protocole réseau de type \emph{Remote Procedure Call} permettant l'échange de données et l'appel de méthodes par des exécutables distincts. La définition des données 
-    comme des procédures est faite par le biais du langage XML}
+    comme des procédures est faite par le biais du langage \gls{XML}}
 }
 
 \newglossaryentry{topics}
 {
   name={topics},
-    description={Les topics permettent la communication entre les différents noeuds. 
-    Un noeud est responsable de la publication des données du topic (commandes de contrôle par exemple) et un noeud distinct souscrit à ce même topic pour les récupérer (par exemple le noeud qui va traîter ses commandes).
+    description={Les topics permettent la communication entre les différents n\oe{}uds. 
+    Un n\oe{}ud est responsable de la publication des données du topic (commandes de contrôle par exemple) et un n\oe{}ud distinct souscrit à ce même topic pour les récupérer (par exemple le n\oe{}ud qui va traîter ses commandes).
     Typiquement, la publication d'un topic se fera en C++ par l'appel à la méthode advertise().
-    Parallèlement, la souscription a un topic nécessite l'appel à la méthode subscribe()}
+    Parallèlement, la souscription à un topic nécessite l'appel à la méthode subscribe()}
 }
 
 \newglossaryentry{services}
 {
   name={services},
-    description={Les services sont des éléments de communication inter-noeuds qui permettent l'envoi de requêtes et de réponses. 
+    description={Les services sont des éléments de communication inter-n\oe{}uds qui permettent l'envoi de requêtes et de réponses. 
     La création de services passe par la définition textuelle des types de données attendues dans la requête et la réponse}
 }
 
 \newglossaryentry{serveur de parametres}
 {
   name={serveur de paramètres},
-    description={Le serveur de paramètres est un dictonnaire partagé entre les différents noeuds actifs, accessible grâce aux APIs réseaux. 
-    Il n'est pas destiné à supporter une montée en charge importante, de telle sorte que son utilisation doit se limiter à stocker les paramètres d'utilisation des noeuds. 
-    Ces derniers pourront récupérer leurs variables de configuration au runtime en invoquant le serveur.
-    Le serveur de paramètre utilise le protocole XMLRPC et est impélmenté à l'intérieur du ROS Master}
+    description={Dans un écosystème \gls{ROS}, le serveur de paramètres est un dictonnaire partagé entre les différents n\oe{}uds actifs, accessible grâce aux APIs réseaux. 
+    Il n'est pas destiné à supporter une montée en charge importante, de telle sorte que son utilisation doit se limiter à stocker les paramètres d'utilisation des n\oe{}uds. 
+    Ces derniers pourront récupérer leurs variables de configuration au \emph{runtime} en invoquant le serveur.
+    Le serveur de paramètres utilise le protocole \gls{XMLRPC} et est implémenté à l'intérieur du ROS Master}
 }
 
 \newglossaryentry{Catkin}
@@ -206,7 +206,7 @@
 \newglossaryentry{SLAM}
 {
   name={SLAM},
-    description={Le SLAM pour Cartographie et Localisation Simultannées (de l'anglais Simultaneous Localisation And Mapping) est une discipline permettant 
+    description={Le SLAM pour Cartographie et Localisation Simultannées (de l'anglais Simultaneous Localization And Mapping) est une discipline permettant 
     de conférer à un dispositif mobile la perception de son environnement externe, sous la forme d'une cartographie des points de repères stationnaires, tout comme de ses 
     propres positions et orientations au sein de cet environnement. 
     Le SLAM est mis en \oe{}uvre par le biais de capteurs internes (mesures odométriques ou inertielles) et externes (LIDAR, RADAR, caméra)}
@@ -224,13 +224,14 @@
 {
   name={IMU},
     description={Inertial Measurement Unit, désigne des données issues de capteurs inertiels, typiquement présents dans des systèmes robotiques ou des véhicules aériens sous la forme de gyromètres et d'accéléromètres.
-    De telles mesures qualifient le roll, le pitch et le yaw (roulis, tangage et lacet en français), à savoir les valeurs des composantes sur les trois degrés de liberté d'un véhicule }
+    De telles mesures qualifient le roll, le pitch et le yaw (roulis, tangage et lacet en français), à savoir les valeurs des composantes sur les trois degrés de liberté d'un véhicule}
 }
 
 \newglossaryentry{GeoTIFF}
 {
   name={GeoTIFF},
-    description={Tf pour ``The transform library'' est un package ROS qui permet de mettre en relation différents systèmes de coordonnées et de mettre à jour ces relations durant leurs déplacements respectifs}
+    description={GeoTIFF spécifie un format de description associé à des images TIFF. Ce standard appartient au domaine public. 
+    Le format TIFF pour Tagged Image File Format vise à encapsuler des images numériques pour leur adjoindre des informations diverses, il est quant à lui déposé par Adobe}
 }
 
 \newglossaryentry{bagfile}
@@ -238,13 +239,14 @@
   name={bagfile},
     description={Un fichier bag (ou bagfile) est un fichier spécifique à l'écosystème de ROS qui contient des enregistrements de messages sérialisés variés et les timestamps afférents. 
     ROS permet l'enregistrement et la lecture de tels fichiers par le biais d'outils tels que l'exécutable rosbag.
-    Ces fichiers sont utilisés à des fins d'analyse ou de simulations de situations pratiques pendant lesquelles des n\oe{}uds émettent et / ou transmettent des données}
+    Ces fichiers sont utilisés à des fins d'analyse ou de simulations de situations pratiques pendant lesquelles des n\oe{}uds émettent et / ou reçoivent des données}
 }
 
 \newglossaryentry{tf}
 {
   name={tf},
-    description={Tf, pour \emph{The transform library} est le nom d'un package ROS qui permet de définir les nomenclatures et les transformations entre les systèmes de repères utiles aux n\oe{}uds de calcul}
+    description={Tf, pour \emph{The transform library} est le nom d'un package ROS qui permet de définir et mettre en relation différents systèmes de coordonnées utiles aux n\oe{}uds de calcul, et de mettre à jour ces 
+    relations au cours de leurs déplacements respectifs}
 }
 
 \newglossaryentry{TCP}
@@ -252,12 +254,6 @@
   name={TCP},
     description={Transport Control Protocol est un protocole de la couche transport qui permet entre-autre la remise d'accusés de réception à l'émetteur (flag ACK) dans un environnement client-serveur. 
     Cette particularité vise à assurer la fiabilité de la communication établie}
-}
-
-\newglossaryentry{EKF}
-{
-  name={EKF},
-    description={Extended Kalman Filter}
 }
 
 \newglossaryentry{API}
@@ -269,13 +265,13 @@
 \newglossaryentry{XML}
 {
   name={XML},
-    description={eXtensible Markup Language est un langage informatique balisé et normalisé, traditionnellement utilisé à des fins de transmission de données via Internet de part son indépendance de toute plateforme}
+    description={eXtensible Markup Language est un langage informatique balisé et normalisé, traditionnellement utilisé à des fins de transmission de données via Internet car il est indépendant de toute plateforme}
 }
 
 \newglossaryentry{Kanban}
 {
   name={Kanban},
-    description={Mot japonais signifiant  ``étiquette''. 0ans le domaine du développement logiciel le Kanban (issu de la méthode japonaise du même nom) consiste à instaurer des métriques visuelles attestant l'avancement d'un projet tout en facilitant sa gestion. 
+    description={Mot japonais signifiant  ``étiquette''. Dans le domaine du développement logiciel le Kanban (issu de la méthode japonaise du même nom) consiste à instaurer des métriques visuelles attestant l'avancement d'un projet tout en facilitant sa gestion. 
     Il s'agit généralement d'un tableau où chaque colonne correspond à une étape du processus de réalisation et au travers duquel on déplace des items de gauche vers la droite en fonction de l'état dans lequel ils se trouvent}
 }
 
@@ -290,4 +286,12 @@
   name={USAR},
     description={Urban Search And Rescue, est un terme qui qualifie les environnements, scénarios ou situations impliquant la recherche, la mise à l'abri et parfois les soins de victimes en espace urbain. 
     Un exemple typique consiste à évacuer des victimes d'un immeuble incendié}
+}
+
+\newglossaryentry{EKF}
+{
+  name={EKF},
+    description={Le filtre de Kalman (KF) est une méthode d'estimation permettant de caractériser l'évolution d'un système dans le temps à partir de mesures imprécises ou bruitées.
+    Ce type de filtre dispose non seulement d'une capacité prédictive à partir de l'état précédant, mais aussi d'une capacité de correction du modèle et des erreurs.
+    Le filtre de Kalman étendu (EKF) permet l'application du filtre de Kalman à des modélisations non linéaires, moyennant un surplus calculatoire}
 }

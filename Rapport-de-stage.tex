@@ -1,6 +1,7 @@
 \documentclass[a4paper, 12pt]{report} 
 
 %language and encoding
+\usepackage{amsmath}
 \usepackage[obeyspaces, spaces]{url}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -101,16 +102,37 @@
   morekeywords = [1]{float32, Header, string, uint32},
   morekeywords = [2]{roslaunch},
 }
+\lstdefinestyle{roslaunch}
+{
+  frame=single,
+  numbers=left,
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  xleftmargin=\parindent,
+  language=bash,
+  showstringspaces=false,
+  basicstyle={\ttfamily\footnotesize},
+  commentstyle=\color{comment-color},
+    keywordstyle = [3]{\color{teal}},
+  %identifierstyle=\color{blue-sii},
+  stringstyle=\color{string-color},
+  directivestyle=\color{blue},
+  keywordstyle = {\color{key-color}},
+  keywordstyle = [2]{\color{key-color}},
+  otherkeywords = {roslaunch},
+  morekeywords = [1]{roslaunch}
+}
 \lstset{escapechar=@}
 
 \input{glossary}
 
 \begin{document}
 
+  \pagestyle{empty}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   %                    Blank                          %
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \thispagestyle{empty}
+ 
   \newpage
   ~ 
   \newpage
@@ -119,38 +141,37 @@
   %                    Abstract                       %
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
-  \thispagestyle{empty}
   \newpage
   \input{abstract}
-  
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   %                  ThanksGiving	              %
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  
-  \thispagestyle{empty}
-  \input{remerciements}
 
+  \input{remerciements}
+  \thispagestyle{empty}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   % 	           Table of Contents                  %
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
-  \thispagestyle{empty}
+  \pagebreak
+  
   \tableofcontents
+  
+  \pagebreak
   
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   %                  Figures & Tabs		      %
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
-  \thispagestyle{empty}
   \listoffigures
-
+  
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   % 	                Chapters                      %
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  
-  \thispagestyle{empty}
-  \setcounter{page}{0}
+ 
   \input{introduction}
+  \pagestyle{plain}
+  \setcounter{page}{1}
   \input{contexte}
   \input{realisations}
   \input{bilan}
