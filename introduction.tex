@@ -9,24 +9,24 @@ Il s’inscrit dans le domaine du développement informatique appliqué à la ro
 Les briques logicielles implémentées devront permettre de contrôler un robot mobile, de cartographier son environnement, ainsi que de le localiser en temps réel au travers d'une \gls{IHM} interactive. 
 Les versants de cartographie et de localisation sont également connus sous le terme de \gls{SLAM} pour cartographie et localisation simultanées. 
 Ils s’appuient en priorité sur des mesures spatiales, fournies par un \gls{LIDAR} embarqué sur le robot et --dans une moindre mesure-- sur les relevés d'encodeurs présents au niveau des roues du robot.
-Au travers sa mise en \oe{}uvre, le \gls{SLAM} constitue une base indispensable à tout système de navigation autonome. 
+Au travers de sa mise en \oe{}uvre, le \gls{SLAM} constitue une base indispensable à tout système de navigation autonome. 
 Bien que ce point ne fasse pas l'objet de ce rapport, il constitue en grande partie l'essence applicative du présent projet. 
 
 Les réalisations attendues s'inscrivent en effet dans un périmètre plus large qu’est la mise en \oe{}uvre d’un Système Robotique Tactique Multi-Missions pour la surveillance et l’aide à la prise de décisions dans les milieux à risques (\gls{SRT2M}).
 Adressé au secteur de la Défense, ce système en devenir permet à un opérateur humain d’effectuer des missions de contrôle, de surveillance et de recherche en terrain dangereux ou potentiellement dangereux directement depuis un ``shelter'', à savoir une zone abritée. 
 L’opérateur dispose à cet effet d’une flotte de robots terrestres et aériens qu’il contrôle à distance. 
-L'exploration du milieux permet la visualisation de données cartographiques, la localisation des véhicules au sein de la carte, et d’autre part, la réception
+L'exploration du milieu permet d'une part la visualisation de données cartographiques et la localisation des véhicules au sein de la carte, et d’autre part, la réception
 de flux vidéo émanant de caméras à 360\degre embarquées. 
-Ces flux vidéo sont soumis à des traitements qui permettent de détecter des objets d’intérêts et de les classifier de manière automatique. 
-C'est Alban Chazot, également étudiant ingénieur, qui a assuré la réalisation de cette dernière fonctionnalité.   
-Les classifications sont ensuite incrustées sur la carte générée, de manière à ce que l'utilisateur puisse visionner la classe, la position et la taille des entités détectées en une seule et même zone de rendu. 
+Ces flux vidéo sont soumis à des traitements qui permettent de détecter des objets d’intérêt et de les classifier de manière automatique. 
+C'est Alban Chazot, également étudiant ingénieur à l'INSA Centre Val-de-Loire, qui a assuré la réalisation de cette dernière fonctionnalité.   
+Les classifications sont ensuite incrustées sur la carte générée, de manière à ce que l'utilisateur puisse visionner les résultats de \gls{SLAM}, la \gls{classe}, la position et la taille des entités détectées en une seule et même zone de rendu. 
 
 Le premier chapitre vise à apporter au lecteur une compréhension suffisante du contexte du stage pour en saisir les enjeux. 
 Il s'attache d'abord à décrire la structure d'accueil, à savoir le groupe \gls{SII}, au sein duquel s'articulent les agences françaises et en particulier, l'agence \^{I}le-de-France
 dont dépend le site de Bourges. 
 \`{A} ce titre, sa portée et son organisation seront particulièrement détaillées. \\
-Un deuxième chapitre donnera les étapes de la réalisation les plus conséquents. 
-Cette restitution consitera d'abord à définir clairement le livrable attendu à la fin du stage notamment au travers de l'analyse fonctionnelle du produit.
+Un deuxième chapitre donnera les étapes les plus conséquentes de la réalisation. 
+Cette restitution consistera d'abord à définir clairement le livrable attendu à la fin du stage notamment au travers de l'analyse fonctionnelle du produit.
 Une partie viendra étayer les choix techniques ou théoriques qui constituent la base de l'implémentation, comme les principes fondamentaux du \gls{SLAM} ou l'utilisation de \gls{ROS}. 
 Puis nous discuterons la façon dont ces principes ont été intégrés au projet, au travers d'éléments qui relèvent de la mise en \oe{}uvre architecturale et du fonctionnement général de l'application résultante.\\
 Ce document sera complété d'un chapitre destiné à exposer les stratégies organisationnelles mises en place durant les différentes phases d'avancement du stage. 

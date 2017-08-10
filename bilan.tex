@@ -83,10 +83,10 @@
   
   Le Document de Conception Logicielle est quant à lui intervenu plus tard dans l'avancée du stage. 
   Il consiste à formaliser les éléments conceptuels, en termes d'architecture physique et logicielle du projet. 
-  Ces briques ayant été largement explicitées au long de ce rapport nous n'attayerons pas d'avantage ce point. 
+  Ces briques ayant été largement explicitées au long de ce rapport nous n'étayerons pas d'avantage ce point. 
   
-  Par ailleurs, un planning présentant une granularité hebdomadaire a été effectué au mois de mars, ce document est présenté en \nameref{annexe:planning}.
-  Cette réalisation vise à définir et ordonnancer les tâches à réaliser et, d'autre part, à estimer l'impact temporel de chacune d'entre-elles. 
+  Un planning présentant une granularité hebdomadaire a été effectué au mois de mars, ce document est présenté en \nameref{annexe:planning}.
+  Cette réalisation vise d'une part à définir et ordonnancer les tâches à réaliser et, d'autre part, à estimer l'impact temporel de chacune d'entre-elles. 
   Ce document a été réalisé dans une optique d'organisation personnelle mais a également constitué un outil d'évaluation et de communication avec M. Daumand qui a été en grande partie affecté en missions hors de l'agence. 
   Il s'agissait donc pour nous de fixer les jalons clés, les \emph{dead-lines} et les versions du logiciel à produire afin qu'il suive de manière pragmatique l'avancée du travail. 
   
@@ -111,7 +111,7 @@
   
   \begin{itemize}
    \item les tâches à effectuer, par exemple \emph{Enregister les données de cartographie dans le format DOG}
-   \item la compléxité relative de chacune d'entre-elles 
+   \item la complexité relative de chacune d'entre-elles 
    \item les dépendances de certaines tâches les unes par rapport aux autres
   \end{itemize}
 
@@ -130,9 +130,9 @@
 \section{Résultats en vue d'un prolongement}  
   \subsection{Un module de SLAM en adéquation avec les attentes du projet}
   
-  Nous nous intéressons dans un premier lieu à la fidélité des résultats de SLAM et dans un second temps, à une appréciation de l'ensemble du projet, incluant également les travaux d'Alban Chazot et bien sûr la vision de M. Daumand.  
+  Nous nous intéressons dans un premier temps à la fidélité des résultats de SLAM et ensuite à une appréciation de l'ensemble du projet, incluant également les travaux d'Alban Chazot et bien sûr la vision de M. Daumand.  
   
-  La figure \ref{fig:carto} donne un apperçu de la précision des résultats de SLAM. 
+  La figure \ref{fig:carto} donne un aperçu de la précision des résultats de SLAM. 
   Elle met en parallèle les résultats cartographiques du système avec un plan d'évacuation des locaux dans lesquels l'acquisition a pu être menée. 
   Pour des raisons pratiques, toutes les pièces n'ont pu être scannées, puisque celles-ci hébergent des collaborateurs ou directeur d'agence menant leurs activités.
   
@@ -162,16 +162,16 @@
    \item arrivée dans le bureau 2
   \end{itemize}
 
-  Lorsque la pateforme longe le couloir, le moteur de SLAM est confronté à une problématique typique : les points de repères extraits sont les mêmes à des temps et positions différentes. 
-  En effet, il n'est pas possible d'extraires des caractéristiques spatiales autres que des murs droits, jusqu'à ce que l'entrebaillement de la porte du bureau 2 ne soit visible. 
+  Lorsque la plateforme longe le couloir, le moteur de SLAM est confronté à une problématique typique : les points de repères extraits sont les mêmes à des temps et positions différentes. 
+  En effet, il n'est pas possible d'extraire des caractéristiques spatiales autres que des murs droits, jusqu'à ce que l'entrebaillement de la porte du bureau 2 ne soit visible. 
   Dans ce cas, l'association de données interne au processus de SLAM va fusionner les repères perçus à différents points de la zone traversée, générant des erreurs de cartographie et de localisation.  
   Ce phénomène est observable lors du téléguidage du robot à travers le couloir, \gls{Hector SLAM} va retourner des positions successives identiques sur quelques mètres alors que la position réelle du robot a évolué.
   La zone bleue sur le plan d'évacuation représente la portion de l'espace parcouru sur laquelle \gls{Hector SLAM} a estimé que la plateforme faisait du \og sur-place \fg{}. 
   
-  Une réponse à cette problématique pourrait être de se fier d'avantage à l'odométrie, puisque les encodeurs des roues du robot détiennent l'information jusqu'ici manquante : le robot a avancé ou reculé. 
+  Une réponse à cette problématique pourrait être de se fier davantage à l'odométrie, puisque les encodeurs des roues du robot détiennent l'information jusqu'ici manquante : le robot a avancé ou reculé. 
   Or Hector SLAM a été choisi spécifiquement pour sa faculté à se baser en priorité sur les données issues du LIDAR. 
   Ce moteur de SLAM présente donc des limites intrinsèques pour une utilisation dans des environnements lisses, où peu de repères spatiaux évidents sont perceptibles.  
-  L'amélioration des résultats dans notre couloir reviendrait à utiliser un LIDAR à plus grande portée, capable de déceller des caractéristiques plus lointaines
+  L'amélioration des résultats dans notre couloir reviendrait à utiliser un LIDAR à plus grande portée, capable de déceler des caractéristiques plus lointaines
   \footnote{On rappelle que la portée maximale du RPLidar A2 est de $6m$.}.
   
   Enfin, la réussite du projet dans sa globalité a pu être attestée par les résultats d'une présentation devant des collaborateurs commerciaux et directeurs de projet qui est intervenue le 13 juin 2017.
@@ -193,10 +193,10 @@
   \end{itemize}
   
   
-  Par ailleurs, ce projet mené de bout en bout a suscité un foisonnement d'idées applicatives, dont nous rappelons ici le scénario majeur : une application millitaire facilitant l'accès à des informations stratégiques. 
+  Par ailleurs, ce projet mené de bout en bout a suscité un foisonnement d'idées applicatives, dont nous rappelons ici le scénario majeur : une application militaire facilitant l'accès à des informations stratégiques. 
   Tout d'abord, la mise en \oe{}uvre d'algorithmes de SLAM aboutit généralement sur des systèmes capables de naviguer en autonomie ou semi-autonomie. 
   Moyennant une adaptation du matériel à cet effet, cette fonctionnalité peut être atteinte rapidement. 
-  Elle constitue aussi un pré-requis aux des applications envisagées. 
+  Elle constitue aussi un pré-requis aux applications envisagées. 
   
   \begin{figure}[h]
     \centering
@@ -208,7 +208,7 @@
   Le scénario principal que nous cherchons à illustrer ici est composé d'une flotte de véhicules autonomes, à la fois aériens et terrestres, pilotés à distance par un opérateur (voir figure \ref{fig:srt2M-1}). 
   Le système logiciel embarqué est distribué sur chacun des terminaux mobiles, chacun d'entre-eux étant atteignable par ondes radio ou WiFi sur un canal de communication chiffré. 
   L'opérateur va émettre un ordre de mission correspondant à une zone à explorer, une niveau de furtivité et un temps imparti comprenant l'aller et le retour des modules.
-  Une unité maîtresse sera responsable de la répartition des trajectoires à emprunter pour l'ensemble de la flotte, tandis que les calculs peuvent être répartis ou centralisés sur une station de travail abrittée.
+  Une unité maîtresse sera responsable de la répartition des trajectoires à emprunter pour l'ensemble de la flotte, tandis que les calculs peuvent être répartis ou centralisés sur une station de travail abritée.
   Si le véhicule maître est indisponible ou défectueux, une autre unité endosse son rôle immédiatement. 
     \begin{figure}[h]
     \centering
@@ -228,16 +228,16 @@
   
   Ce projet s'est trouvé complexe et stimulant à tous les niveaux. 
   Les phases de spécification du besoin ont été fastidieuses tant du fait de la rigueur des documents requis qu'au regard de mon manque de vision intial et de ma difficulté à me représenter ce que serait le système en bout de stage. 
-  Cela s'explique notamment par une méconnaissance intiale du domaine de la robotique et du secteur de la défense.
+  Cela s'explique notamment par une méconnaissance initiale du domaine de la robotique et du secteur de la défense.
   Les aides conjointes de MM. Daumand et Hafiane, de vastes recherches documentaires et un intérêt certain pour ce sujet où tout était à construire ont fort heureusement motivé une rapide appropriation des problématiques et enjeux afférents. 
   
   Les outils utilisés tels que ROS et à plus faible mesure Qt, ou les fondements théoriques du SLAM puis d'Hector SLAM ont également nécessité des temps de compréhension et d'assimilation conséquents. 
-  Bien que n'ayant pas outrepassé le temps imparti à la recherche de solutions techniques, il s'est avéré difficile de passer plusieures semaines à approfondir des connaissances très spécifiques --comme dans le cas de ROS-- sans 
+  Bien que n'ayant pas outrepassé le temps imparti à la recherche de solutions techniques, il m'est avéré difficile de passer plusieurs semaines à approfondir des connaissances très spécifiques --comme dans le cas de ROS-- sans 
   avoir la moindre idée de ce que donneront les débuts de l'implémentation. 
   Cet effet tunnel s'est trouvé renforcé du fait des délais d'acquisition du matériel et des incertitudes liées au fonctionnement du robot. 
   
-  Aussi, nous avons eu la chance d'appréhender la réalisation d'un système à naître, sans qu'aucune étude préalable n'ai été menée. 
-  Ce point a à la fois constitué un atout majeur dans le choix de ce stage, mais également un point d'incertitude indéniable qui complique la visualisation d'un système final. 
+  Aussi, nous avons eu la chance d'appréhender la réalisation d'un système à naître, sans qu'aucune étude préalable n'ait été menée. 
+  Ce point a à la fois constitué un atout majeur dans le choix de ce stage, mais également une incertitude indéniable qui a compliqué la visualisation du système final. 
   Par exemple, la quantification précise du temps alloué aux diverses étapes de conception ou de réalisation s'est révélée être une pratique nouvelle et à la fois primordiale pour mener à bien ce genre de projets. 
   Ces difficultés ont peut-être avant tout été surmontées par la communication au sein de l'équipe, permettant de désamorcer les situations de doutes et de consolider sereinement une vision du projet à moyen terme. 
   
@@ -248,9 +248,9 @@
   
   \subsection{\'{E}volution personnelle au sein de la structure}
   
-  Bien qu'elle soit inclue dans un groupe international, l'agence SII Bourges affiche un esprit \emph{start-up} indéniable. 
-  L'équipe sur place est à taille humaine, d'une moyenne d'âge située autours d'une trentaine d'années et présente des normes décontractées soutenues par une hiérarchie horizontale.
-  La société SII dénote d'une envie de séduire les plus jeunes actifs en breuvetant le slogan \#FUNgenieur qui vise à \emph{``dépoussiérer l'image du geek austère''}, en proposant salles de jeu, de sport ou de détente dans ses agences et, 
+  Bien qu'elle soit inclue dans un groupe international, l'agence SII Bourges affiche un \og esprit \emph{startup}\fg{} indéniable. 
+  L'équipe sur place est à taille humaine, d'une moyenne d'âge située autour d'une trentaine d'années et présente des normes décontractées soutenues par une hiérarchie horizontale.
+  La société SII dénote d'une envie de séduire les plus jeunes actifs en brevetant le slogan \#FUNgenieur qui vise à \emph{``dépoussiérer l'image du geek austère''}, en proposant salles de jeu, de sport ou de détente dans ses agences et, 
   finalement, en misant sur un management de proximité accru.
   \`{A} cet effet, Mme Aurélie Merlin, Campus Manager rattachée à l'agence Île-de-France encadre la communauté de stagiaires et participe à la faire vivre par le biais de défis hauts en couleurs : concours photo, présentation 
   des stages en trois minutes, après-midi dédiés aux échanges entre stagiaires. 

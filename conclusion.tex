@@ -1,30 +1,28 @@
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
 
-Ce stage s'est avéré enrichissant d'un point de vue personnel puisqu'il a impliqué en grande partie l'acquisition de nouvelles connaissances théoriques, techniques et organisationnelles, sans pour autant fermer la porte au 
-domaine de la sécurité. 
-La globalité du projet a aussi eu le mérite de susciter l'intérêt de parties prenantes internes et externes à SII, constituant une note très positive pour l'équipe projet. 
-Néanmoins, si l'on doit envisager une industrialisation quelconque, celle-ci devra s'accompagner de nombreuses considérations encore peu explorées. 
+Pour conclure ce rapport, nous reviendrons sur les problématiques majeures à prendre en compte afin d'envisager une potentielle industrialisation du système développé. 
+Nous établirons ensuite le bilan des apports de ce stage d'un point de vue personnel, en tant que stagiaire et élève ingénieure. 
+Puis nous tenterons de dégager quelques bénéfices que peuvent en tirer SII et l'INSA Centre Val-de-Loire au moins sur le court terme.
 
 D'abord le travail accompli jusqu'ici laisse volontairement de côté les tests des différentes briques logicielles.  
-Cette étape indispensable se chiffre généralement comme étant au moins deux fois supérieure au développement, en terme de temps de réalisation.
+Cette étape indispensable se chiffre généralement comme étant deux fois supérieure au développement, en terme de temps de réalisation.
 Bien qu'adapté à un démonstrateur, le matériel utilisé devra également être repensé en intégralité pour s'adapter à une application professionnelle. 
-Il est convenu que le moteur de SLAM représente un premier pas vers un véhicule autonome.
-Effectivement, nous arrivons par ce biais à conférer à notre système, une perception de l'environnement de la plateforme mobile et de sa propre position au sein de celui-ci.    
+S'il est convenu que le moteur de SLAM représente un premier pas vers un véhicule autonome, la panoplie de périphériques à disposition mérite d'être complétée pour atteindre cet objectif.
+Nous arrivons jusqu'ici à conférer au système une perception de l'environnement de la plateforme mobile et de la position de la plateforme elle-même.    
 Avec un LIDAR à technologie 2D --comme c'est le cas du RPLidar A2-- il est cependant impossible de déceler les obstacles en dessous et au dessus du plan défini par les rayons laser. 
-Ces obstacles pouvant altérer l'état du matériel ou plus généralement la plannification de chemin au sein de la carte, une conduite autonome du véhicule ne peut être envisagée dans ces conditions.   
+Ces obstacles pouvant altérer l'état du matériel ou plus généralement la planification de chemin au sein de la carte, une conduite autonome du véhicule ne peut être envisagée dans ces conditions.   
 Afin d'atteindre pleinement cette fonctionnalité, on peut envisager de se doter d'un LIDAR qui cartographie l'espace en trois dimensions. 
 On peut également équiper le dispositif mobile d'un jeu suffisant de capteurs infra-rouges, capables de détecter l'ensemble des obstacles susceptibles d'atteindre la plateforme quelque soit leur hauteur. 
-
-Enfin, on souligne un manque de sécurisation des données et communications inhérentes au projet. 
+On souligne aussi un manque de sécurisation des données et communications inhérentes au projet. 
 Les requêtes et réponses entre le poste de travail et le robot correspondent au fonctionnement normal du Wifibot :
-une fois l'accès au routeur WiFi établi, aucune procédure visant à l'authentification ou à la confidentialité n'est mise en place.
-Par ailleurs, la connexion au Raspberry Pi depuis le poste de travail passe par l'accès à un shell sécurisé (SSH), que nous avons voulu non interactif. 
-L'utilisateur amené à se connecter au nano-ordinateur sous le nom d'hôte par défaut ``PI'' doit passer par une authentification par clés RSA.
-L'authentification par mot de passe étant désactivée, nous exécutons automatiquement cette procédure ainsi qu'un script en vue de restreindre la surface d'attaque potentielle. 
-Le fichier \path{/home/pi/.ssh/authorized_keys} permet de mettre en \oe{}uvre cette politique :  
-\begin{lstlisting}[style = custombash]
-# execute ssh_cmd_wrapper.sh with SSH_ORIGINAL_COMMAND argument, which must be locally existing ROS node name
-command="/home/pi/scripts/ssh_cmd_wrapper.sh $SSH_ORIGINAL_COMMAND" ssh-rsa <RSA public key> <user at machine>
-\end{lstlisting}
+une fois l'accès au routeur WiFi établi, aucune procédure visant à l'authentification ou à la confidentialité n'est effectivement mise en place.
+Ce point revêt une intérêt particulier --pour ne pas dire critique-- si l'on admet que l'outil développé puisse servir à la défense nationale. 
 
+En termes de rétrospectives, ce stage a indéniablement impliqué l'acquisition de nouvelles connaissances techniques, théoriques et organisationnelles. 
+Il a aussi eu le mérite de ne pas fermer la porte au domaine de la sécurité bien qu'il en soit apparemment éloigné. 
+Les enseignements tirés de ce projet se retrouvent aussi bien dans ses spécificités techniques ou théoriques, que dans sa transversalité au regard des aspects traités.
+En effet, il a su soulever des problématiques de développement logiciel pur, des problématiques systèmes en considérant l'ubiquité de certains composants et des problématiques réseau assez bas-niveau notamment au travers de l'utilisation de l'API sockets. 
+La globalité du projet a également suscité l'intérêt de parties prenantes internes et externes à SII, constituant une note très positive pour l'équipe projet. 
+Le travail accompli jusqu'ici ayant été reçu favorablement, nous pouvons espérer que SII et l'INSA CVL soient confortés dans leur démarche de partenariat. 
+Nous les souhaitons enclins à organiser de nouveaux stages orientés vers le développement robotique, les problématiques de \gls{SLAM} ou de classification automatique d'objets associées à des technologies disruptives et en plein essor.

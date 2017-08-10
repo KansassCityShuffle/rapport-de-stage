@@ -63,7 +63,7 @@ Par exemple, on précisera que la FNC001 nécessite la possession d'un matériel
 
 Dans ce qui va suivre, nous nous concentrerons sur les exigences qui apportent la valeur intrinsèque de l'ouvrage, en mettant l'accent sur les niveaux de criticité élevés : à savoir celles qui 
 permettent d'établir et de représenter une cartographie de l'espace et d'y localiser le robot en tout temps. 
-La définition de ces exigences a permis d'entamer une phase de définition des architectures physique et logicielle sereinement, sans perdre de vue l'ensemnle des fonctionnalités à assurer et leur priorité respective. 
+La définition de ces exigences a permis d'entamer une phase de définition des architectures physiques et logicielles sereinement, sans perdre de vue l'ensemble des fonctionnalités à assurer et leur priorité respective. 
 
   \subsection{Matériel et Interfaces}
   \label{subsec:archi-physique}
@@ -79,7 +79,7 @@ Ainsi, nous devions nous doter d'une dispositif capable de prendre ces mesures e
 \end{figure}
 
 Le choix du matériel retenu a fait l'objet d'une veille technologique visant à comparer les différents \gls{LIDAR} présents sur le marché. 
-Ceux-ci ont pu être classés, outre selon leur prix, selon les critères suivants : 
+Ceux-ci ont pu être classés, outre selon leur prix, au regard des critères suivants : 
 
 \begin{itemize}
   \item la technologie employée (1D, 2D, 3D)
@@ -99,11 +99,11 @@ Cet équipement est donc adapté à la mesures des distances dans un espace plan
   \captionof{figure}{Résultats de l'application constructeur du RPLidar A2}
   \label{fig:lidar-points-cloud}
 \end{figure}
-La possibilité d'équiper le robot de servo-moteurs et d'un LIDAR à faisceau unique fixe moins onéreux a également été explorée, mais n'a pas été retenue au regard de la compléxité de mise en \oe{}uvre d'un tel dispositif, 
+La possibilité d'équiper le robot de servo-moteurs et d'un LIDAR à faisceau unique fixe moins onéreux a également été explorée, mais n'a pas été retenue au regard de la complexité de mise en \oe{}uvre d'un tel dispositif, 
 du coût cumulé du LIDAR et des servo-moteurs et enfin, des fortes imprécisions potentiellement engendrées lors du mouvement du robot. 
 La figure \ref{fig:lidar-points-cloud} montre le nuage de points restitué par un logiciel intégré au kit de développement du RPLidar A2, utilisable uniquement sous Windows.  
 Le robot mis à disposition du projet est un Wifibot Lab, muni d'une carte mère Windows Embedded. 
-Enfin, un nano-ordinateur Raspberry Pi 3 modèle B est utilisé à des fins de communication entre les briques embarquées et une station de travail qui réuni les modules de calcul et l'\gls{IHM}.
+Enfin, un nano-ordinateur Raspberry Pi 3 modèle B est utilisé à des fins de communication entre les briques embarquées et une station de travail qui réunit les modules de calcul et l'\gls{IHM}.
 
 Nous obtenons ainsi l'archtecture physique schématisée sur la figure \ref{fig:archiphy}, au travers de laquelle sont définis quatre modules principaux, notés $M_{i}$.
 
@@ -160,7 +160,7 @@ Le RPLidar A2 dispose d'un champ de 360\degre sur l'axe horizontal, d'une fréqu
 Les données odométriques --ou odométrie-- permettent la prédiction de la position du robot dans le plan. 
 Ce calcul se base typiquement sur le différentiel de vitesse entre les deux roues motrices, fourni par des encodeurs internes au robot.
 La difficulté réside lorsqu'il s'agit de corréler dans le temps et avec précision ces données avec les mesures en sortie du laser.
-Pour pallier ce problème, l'odométrie peut être extrapolée de l'instant précédant dans une démarche prédictive. 
+Pour pallier ce problème, l'odométrie peut être extrapolée de l'instant précédent dans une démarche prédictive. 
 
 Une fois les données externes collectées, il convient de les traiter pour en extraire des \gls{landmarks} spatiaux. 
 Cette étape, représentée en violet sur la figure \ref{fig:slam-proc}, consiste à caractériser les points de repères pertinents. 
@@ -201,7 +201,7 @@ Il offre des fonctionnalités liées à la robotique grâce à des librairies d�
 Il a ainsi été rapidement étudié puis adopté pour ce projet sous sa version Kinetic. 
 Notre utilisation de \gls{ROS} couvre les briques logicielles embarquées sur le Raspberry Pi et des briques présentes localement sur le poste de travail de l'utilisateur final. 
 Son fonctionnement passe par la création d'un réseau de n\oe{}uds\cite{Bib_ROS_nodes}, c'est-à-dire des exécutables dans l'écosystème \gls{ROS}, organisés autour d'un n\oe{}ud central appelé \gls{ROS} Master\cite{Bib_ROS_master}.
-Cette entité enregistre les noeuds, leur fourni un nom et instancie un annuaire qui leur permet d'échanger des données. 
+Cette entité enregistre les noeuds, leur fournit un nom et instancie un annuaire qui leur permet d'échanger des données. 
 Il s'appuie en partie sur le protocle \gls{XMLRPC}.
 
 Les noeuds disposent de plusieurs moyens de communication, disponibles à travers une librairie cliente fournie par \gls{ROS} : les \gls{topics}\cite{Bib_ROS_topics} auxquels il est possible de s'abonner, 
@@ -295,13 +295,14 @@ Lorsque la probabilité portée par une case dépasse un seuil interne à \gls{H
 L'intégration d'\gls{Hector SLAM} au projet s'est déroulée en plusieurs temps.
 Nous avons d'abord pu prendre l'outil en main avant l'achat du \gls{LIDAR} grâce à l'utilisation de données de test contenues par des \gls{bagfile}. 
 Durant cette étape, les résultats pouvaient être visualisés grâce à RViz, un outil graphique inclu dans \gls{ROS}\footnote{Pour la distribution Kinetic de ROS, RViz est présent dans les paquets d'installation dits ``Desktop''\cite{Bib_ROS_install}.}.
-La figure \ref{fig:rviz} illustre le résultat obtenu pour un jeu de test issu de la RobotCup German Open 2011. 
+La figure \ref{fig:rviz} illustre le résultat obtenu pour un jeu de tests issu de la RobotCup German Open 2011. 
 Les zones non explorées y figurent en gris foncé, les zones explorées mais vides en gris clair et les zones occupées en noir. 
 Le robot est resprésenté par trois composantes orthogonales de couleur bleue, verte et rouge et la trajectoire parcourue est une courbe rouge. 
 
-Dans un deuxième temps, il a fallu adapter \gls{Hector SLAM} pour recevoir en entrée les données du \gls{LIDAR}, ce qui revient principalement créer des fichiers de lancement (\emph{launchfile})
-adaptés au périphériques d'acquisition. Dans notre cas nous avons créé deux fichiers distincts : l'un pour le mode d'exécution standard et l'autre pour un mode ``debug''.
-Nous avons également mis en place des éléments qui définissent les tranformations spatiales entre les différents périphériques et qui seront présentés dans la partie \ref{subsection:ROSnodes}. 
+Dans un deuxième temps, il a fallu adapter \gls{Hector SLAM} pour recevoir en entrée les données du \gls{LIDAR}, ce qui revient principalement à créer des fichiers de lancement (\emph{launchfile})
+adaptés aux périphériques d'acquisition. Dans notre cas nous avons créé deux fichiers distincts : l'un pour le mode d'exécution standard et l'autre pour un mode ``debug''.
+Nous avons également mis en place un système de définition des transformations spatiales entre les dispositifs matériels. 
+Cette démarche sera présentée dans la partie \ref{subsection:ROSnodes}. 
 
 \begin{figure}[h]
   \centering
@@ -315,7 +316,7 @@ Nous avons également mis en place des éléments qui définissent les tranforma
   \subsection{Le réseau ROS complet}
   \label{subsection:ROSnodes}
   
-\gls{Hector SLAM} a été intégré à un réseau \gls{ROS} plus large prennant en compte les spécificités de notre application. 
+\gls{Hector SLAM} a été intégré à un réseau \gls{ROS} plus large prenant en compte les spécificités de notre application. 
 Il était entendu que l'\gls{IHM} ne serait pas inclue dans ce réseau et serait développée avec Qt Creator (voir partie \ref{subsection:Qt}).  
 
 La définition du réseau doit alors s'inscrire comme une solution aux problématiques suivantes : 
@@ -336,8 +337,16 @@ Le premier point, représenté en vert sur la figure \ref{fig:rosnet}, est assur
 Il s'interface avec plusieurs fichiers d'en-tête qui constituent la \gls{SDK} du \gls{LIDAR}.
 Cet élément du réseau \gls{ROS} est fourni par SLAMTEC dans son kit de développement.
 Sa mise en \oe{}uvre a demandé de comprendre les principales méthodes de la \gls{SDK} et la portée fonctionnelle de chaque fichier d'en-tête. 
-Par ailleurs, outre l'installation de \gls{ROS} sur Raspberry, la mise en place du matériel a nécessité l'installation d'un driver permettant la conversion des données 
-depuis l'UART vers l'USB, ainsi que la définition de règles d'utilisation du port série sur lequel est raccordé le \gls{LIDAR}.
+Par ailleurs, outre l'installation de \gls{ROS} sur Raspberry, la mise en place du matériel a nécessité la conversion des données UART vers USB grâce à un chipset fourni par le constructeur, l'ouverture du port série 
+dédié au périphérique et la définition de règles communues à Alban Chazot et moi régissant les accès distants au Raspberry.
+\`{A} cet effet, la connexion au Raspberry Pi depuis le poste de travail passe par l'accès à un shell sécurisé (SSH), que nous avons voulu non interactif. 
+L'utilisateur amené à se connecter au nano-ordinateur sous le nom d'hôte par défaut \og PI \fg{} doit passer par une authentification par clés RSA.
+L'authentification par mot de passe étant désactivée, nous exécutons automatiquement cette procédure ainsi qu'un script en vue de restreindre la surface d'attaque potentielle. 
+Le fichier \path{/home/pi/.ssh/authorized_keys} permet de mettre en \oe{}uvre cette politique :  
+\begin{lstlisting}[style = custombash]
+# execute ssh_cmd_wrapper.sh with SSH_ORIGINAL_COMMAND argument, which must be locally existing ROS node name
+command="/home/pi/scripts/ssh_cmd_wrapper.sh $SSH_ORIGINAL_COMMAND" ssh-rsa <RSA public key> <user at machine>
+\end{lstlisting}
 En sortie, ce n\oe{}ud publie le topic \path{/scan}, correspondant au format de messages \path{sensor_msgs/LaserScan} précédemment évoqué (voir \nameref{annexe:laserscan}). 
 
 \begin{figure}[h]
@@ -347,9 +356,9 @@ En sortie, ce n\oe{}ud publie le topic \path{/scan}, correspondant au format de 
   \label{fig:frames}
 \end{figure}
 
-L'intégration d'Hector SLAM demande la définition de plusieurs systèmes de coordonnées correspondant au divers périphériques d'intérêt.
+L'intégration d'Hector SLAM demande la définition de plusieurs systèmes de coordonnées correspondant aux divers périphériques d'intérêt.
 Les transformations spatiales entre ces systèmes étant également requises par \gls{Hector SLAM}, elles sont publiées au travers d'un package appelé \gls{tf}\cite{Bib_ROS_tf}\cite{Bib_tf}. 
-Les n\oe{}uds et topics impliqués dans ce processus sont représentés en bleu foncé sur la figure \ref{fig:rosnet}. 
+Les n\oe{}uds et topics impliqués dans ce processus sont représentés en bleu foncé sur la figure \ref{fig:rosnet}. \\
 \gls{tf} distingue deux types de transformations : les transformations statiques et les transformations dynamiques. 
 Dans le premier cas, il suffit de définir l'identifiant d'un repère de référence (\emph{frame\_id}) et d'un repère fils (\emph{child\_frame\_id}) ainsi que la transformation que subit ce dernier, en s'assurant qu'elle ne sera jamais amenée à changer.
 Dans le second cas, il faut généralement passer par la création d'un noeud publiant la valeur de ce décallage régulièrement durant l'exécution. 
@@ -362,7 +371,7 @@ Elle est calculée par le n\oe{}ud \path{/tf_broadcasters} (voir figure \ref{fig
 Une fois intégrée par \gls{Hector SLAM}, cette transformation est corrigée puis ré-émise par \path{/hector_mapping} : c'est le topic \path{/tf} de la figure \ref{fig:rosnet}. 
 Enfin, le n\oe{}ud \path{/base_link_to_laser_broadcaster} publie régulièrement la transformation entre \emph{base\_link} et \emph{laser}, c'est-à-dire le différentiel de position entre la base du robot et le \gls{LIDAR}. 
 Celui-ci n'étant jamais amené à changer nous sommes dans le cas d'une transformation statique définie de la manère suivante dans le launchfile d'Hector SLAM en mode d'exécution 
-standard\footnote{En mode ``debug'' cette transformation est non avenue puisqu'elle est déja comprise le \emph{bagfile} responsable du rejeu des données} : 
+standard\footnote{En mode ``debug'' cette transformation est non avenue puisqu'elle est déja comprise dans le \emph{bagfile} responsable du rejeu des données} : 
 
 \begin{lstlisting}[style = custombash]
 <!-- Laser is set 25cm above robot base. Node arguments must be : 
@@ -375,7 +384,7 @@ dx dy dz yaw pitch roll frame_id child_frame_id publishing_frequency_in_ms
 \end{lstlisting}
 
 Nous obtenons ainsi un moteur de SLAM fonctionnel à partir duquel nous devons construire une \gls{IHM}. 
-Pour ce faire, nous avons défini trois n\oe{}uds appelés \emph{bridges} représentés en orange sur la figure \ref{fig:rosnet}. 
+Pour ce faire, nous avons définit trois n\oe{}uds appelés \emph{bridges} représentés en orange sur la figure \ref{fig:rosnet}. 
 Chacun d'entre-eux s'abonne à l'un des topics en sortie d'\gls{Hector SLAM}, 
 Ensuite, les données utiles sont formatées par appel à une classe statique nommée \path{Serializer} et communiquées à l'\gls{IHM} par le biais d'un client \gls{TCP} implémenté avec l'API socket. 
 La sérialisation répond à un schéma générique composé d'une en-tête (\emph{header}) et d'une charge utile (\emph{payload}). Il est représenté sur la figure \ref{fig:buffer}. 
@@ -393,8 +402,6 @@ La principale difficulté réside en la transmission de la grille d'occupation c
 Celle-ci contenant plus de $4$ $000$ $000$ valeurs entières, nous nous sommes focalisés sur l'émission de mises à jour locales à chaque acquisition, plutôt que globales\footnote{Il en va de même pour la trajectoire où,
 dans un même souci d'optimisation, nous effectuons un différentiel entre les valeurs précédemment acquises et la nouvelle acquisition}. 
 Ainsi, le \path{payload} se construit de la manière suivante afin de désencombrer la bande passante et réduire la taille de la structure de données qui l'encapsule. 
-
-\newpage
 
 \begin{lstlisting}[style = customcpp]
 // Fill a buffer with occupancy grid local updates
@@ -442,7 +449,7 @@ L'algorithme suivant donne les principes implémentés à cet effet.
 \begin{algorithm}[H]
  \caption{Algorithme de calcul des résultats de corrélation}
  \BlankLine
- \Entree{	$R$ les derniers résultats de détection reçus sous la forme : dimensions plane de l'objet $(w, h)$ et ses coordonnées sphériques $(\phi, \theta)$ \\
+ \Entree{	$R$ les derniers résultats de détection reçus sous la forme : dimensions \og planes\fg{} de l'objet $(w, h)$ et ses coordonnées sphériques $(\phi, \theta)$ \\
 	$t$ un entier non signé, estampille de $R$ }
 	
  \BlankLine	
@@ -505,7 +512,7 @@ L'algorithme suivant donne les principes implémentés à cet effet.
 L'Interface Homme-Machine de l'application a été implémentée en C++ avec l'\gls{API} Qt, facilitant notamment la réalisation de l'interface graphique au moyen de l'environnement de développement Qt Creator. 
 Dans l'\gls{API} Qt, les éléments graphiques sont appelés \emph{widgets} et dérivent de classes définies dans les bibliothèques internes, telles que \path{QWidget}, \path{QOpenGLWidget} ou encore \path{QDialog} pour ne citer 
 que celles qui ont été utiles au projet.  
-Qt fourni également un mécanisme de communication inter-classes thread-safe et type-safe, par le biais d'éléments appelés signaux et 
+Qt fournit également un mécanisme de communication inter-classes thread-safe et type-safe, par le biais d'éléments appelés signaux et 
 slots\footnote{Ce mécanisme peut être mis en parallèle avec les callbacks en C ou C++ ou encore les signaux fournis par l'API boost en C++}.
 Ceux-ci ont la particularité d'occulter la démarche de liaison entre les parties communicantes et ne nécessitent pas de classe dédiée à cet effet. 
 Ils permettent de mettre en place simplement des connexions \emph{one-to-many}, \emph{many-to-one} ou encore \emph{many-to-many}.
@@ -556,7 +563,7 @@ On note que les fonctions de transition sont des slots atteints par des interact
 
 \begin{figure}[h]
   \makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{figures/ihm-model}}%
-  \captionof{figure}{Modèlisation logicielle de l'Interface Homme-Machine}
+  \captionof{figure}{Modélisation logicielle de l'Interface Homme-Machine}
   \label{fig:modelIHM}
 \end{figure}
 
@@ -571,7 +578,7 @@ La classe \path{ROSBridgesServer} instancie un serveur \gls{TCP} consacré à la
 Ces données sont ensuite transmises à des contrôleurs dédiés à chaque type de données (carte, position ou trajectoire) qui assurent le parsing des paquets reçus puis émettent des signaux aux \emph{widgets} de rendu. 
 Dans notre cas, deux \emph{widgets} sont susceptibles de rendre ces données : \path{SlamWidget} ou \path{SlamBackupWidget} respectivement associés au mode \emph{Réception} ou \emph{Backup}.
 Ces \emph{widgets} héritent de la classe Qt \emph{QOpenGLWidget} fournissant les fonctionnalités de rendu graphique d'OpenGL dans un contexte Qt. 
-La figure \ref{fig:reception} donne un apperçu de l'\gls{IHM} en mode \emph{Réception} afin de présenter les différents éléments de l'application. 
+La figure \ref{fig:reception} donne un aperçu de l'\gls{IHM} en mode \emph{Réception} afin de présenter les différents éléments de l'application. 
 La fidélité des résultats sera quant à elle discutée dans la partie \ref{chap:bilan}.  
 
 \begin{figure}[h]
@@ -583,7 +590,7 @@ La fidélité des résultats sera quant à elle discutée dans la partie \ref{ch
 
 Nous pouvons visualiser la fenêtre principale (\path{MainWindow}) complétée d'instances de \emph{widgets} responsables du rendu d'éléments d'intérêt : 
 \begin{itemize}
- \item \textbf{un widget de rendu OpenGL}, en bleu, fourni une représentation de la carte, du robot par le biais d'un modèle 3D et de sa trajectoire (position et orientation en tout temps)
+ \item \textbf{un widget de rendu OpenGL}, en bleu, fournit une représentation de la carte, du robot par le biais d'un modèle 3D et de sa trajectoire (position et orientation en tout temps)
  \item \textbf{un panneau de contrôle}, en vert, est découpé en quatre sections : le Wifibot, le réseau ROS, un joystic virtuel et une console de logs 
  \item \textbf{une barre de menu}, en jaune, permet la sauvegarde de jeux d'acquisition, le chargement d'une sauvegarde pour la rejouer, l'édition de paramètres de l'application ou l'affichage du manuel utilisateur
 \end{itemize}
